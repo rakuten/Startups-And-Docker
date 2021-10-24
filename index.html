@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+
+  
+<style>
+  :root {
+    /* Reduce the font size */
+    --base-font-size: 14px;
+
+    /* Change the theme color hue */
+    /*--theme-hue: 325;*/
+
+    /* Change the sidebar bullets */
+    /*--sidebar-nav-link-before-content: '';*/
+  }
+</style>
+
+</head>
+<body>
+  <div id="app">加载中...</div>
+  <script>
+    window.$docsify = {
+      name: '创业团队容器化办公环境',
+      formatUpdated: '{YYYY}/{MM}/{DD} {HH}:{mm}',
+      repo: 'https://github.com/rakuten/Startups-And-Docker',
+      auto2top: true,
+      homepage: 'index.md',
+      loadSidebar: true,
+      // themeColor: '#3F51B5',
+      maxLevel: 0,
+      // subMaxLevel: 3,
+      // autoHeader: true,
+      sidebarDisplayLevel: 1,
+      loadFooter: true,
+      mustache: {
+        'noPackage': true,
+        data: [
+            'vars.json'
+          ]
+      },
+      toc: {
+          scope: '.markdown-section',
+          headings: 'h1, h2',
+          title: '',
+        },
+      copyCode: {
+          buttonText: {
+            '/': '点击复制',
+            '/en/'      : 'Copy to clipboard'
+          },
+          errorText: {
+            '/': '错误',
+            '/en/'      : 'Error'
+          },
+          successText: {
+            '/': '复制',
+            '/en/'      : 'Copied'
+          }
+        },
+      'flexible-alerts': {
+        note: {
+          label: {
+            '/': '备忘',
+            '/en/': 'Note'
+          }
+        },
+        tip: {
+          label: {
+            '/': '提醒',
+            '/en/': 'Tip'
+          }
+        },
+        warning: {
+          label: {
+            '/': '警告',
+            '/en/': 'Warning'
+          }
+        },
+        danger: {
+          label: {
+            '/': '危险',
+            '/en/': 'Attention'
+          }
+        }
+      }
+    }
+
+  </script>
+  <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  <script src="https://unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+  <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-mustache"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-toml.min.js"></script>
+  <script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'Startups-And-Docker/ChatRoom'
+  };
+</script>
+</body>
+</html>
