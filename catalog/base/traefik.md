@@ -123,7 +123,10 @@ docker run -d \
 -e TZ=Asia/Shanghai \
 --name traefik \
 --privileged \
--p 8080:8080 -p 82:80 -p 444:443 \
+-p 8080:8080 \
+--publish published=80,target=80,mode=host \
+--publish published=443,target=443,mode=host \
+--publish published=8022,target=8022,mode=host,protocol=tcp \
 -v ${NFS}/traefik/traefik.toml:/etc/traefik/traefik.toml \
 -v ${NFS}/traefik/acme:/etc/traefik/acme \
 -v /var/run/docker.sock:/var/run/docker.sock \
@@ -137,7 +140,9 @@ docker service create --replicas 1 \
 --name traefik \
 --network staging \
 -p 8080:8080 \
--p 80:80 -p 443:443 \
+--publish published=80,target=80,mode=host \
+--publish published=443,target=443,mode=host \
+--publish published=8022,target=8022,mode=host,protocol=tcp \
 --constraint=node.role==manager \
 --secret ali_access \
 --secret ali_secret \
@@ -147,6 +152,8 @@ docker service create --replicas 1 \
 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
 --mount type=bind,source=${NFS}/traefik,target=/etc/traefik \
 --mount type=bind,source=${NFS}/traefik/config,target=/etc/traefik/config,readonly \
+--log-driver=loki \
+--log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
 traefik
 ```
 
@@ -184,7 +191,7 @@ services:
     logging: 
       driver: loki
       options: 
-        -loki-url: "http://loki:3100/api/prom/push
+        -loki-url: "http://loki.${DOMAIN}:3100/loki/api/v1/push"
     restart: unless-stopped
 ```
 {% endcode %}

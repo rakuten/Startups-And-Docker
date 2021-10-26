@@ -96,3 +96,4 @@ prom/prometheus
 
 ## 参考
 
+报警规则: https://awesome-prometheus-alerts.grep.to/

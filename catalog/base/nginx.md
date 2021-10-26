@@ -87,7 +87,7 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/nginx/conf/nginx.conf,dst=/etc/nginx/nginx.conf,readonly \
 --mount type=bind,src=${NFS}/nginx/conf/conf.d,dst=/etc/nginx/conf.d,readonly \
 --log-driver=loki \
---log-opt loki-url="http://loki:3100/api/prom/push" \
+--log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
 nginx:1.21.3-alpine
 
 #traefik参数(同时需去除--publish参数)
