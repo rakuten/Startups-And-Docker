@@ -1,12 +1,10 @@
----
-description: 时序数据库
----
-
 # Prometheus
+
+本页最后更新时间: {docsify-updated}
 
 ## 简介
 
-
+时序数据库
 
 ## EXPOSE
 
