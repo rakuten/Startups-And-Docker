@@ -22,9 +22,9 @@
 
 ```bash
 #创建网站保存目录
-mkdir -p ${NFS}/nginx/data
+mkdir -p ${NFS}/nginx/{data,conf}
 #创建配置文件目录
-mkdir -p ${NFS}/nginx/conf/conf.d
+mkdir ${NFS}/nginx/conf/conf.d
 
 #复制配置文件
 docker run -d --name tmp-nginx nginx  
@@ -32,6 +32,18 @@ docker cp tmp-nginx:/etc/nginx/nginx.conf ${NFS}/nginx/conf/
 docker cp tmp-nginx:/etc/nginx/conf/conf.d ${NFS}/nginx/conf/conf.d
 docker rm -f tmp-nginx
 ```
+
+- 修改nginx.conf，将调试信息输出至屏幕(可选)
+
+```conf
+#error_log /var/log/nginx/error.log notice;
+error_log /dev/stdout warn;
+
+#access_log /var/log/nginx/access.log main;
+access_log /var/stdout;
+```
+
+
 
 * 加装OpenTraceing插件\(可选\)
 
@@ -58,7 +70,7 @@ docker run -d \
 -v ${NFS}/nginx/data/www:/usr/share/nginx/html \
 -v ${NFS}/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro \
 -v ${NFS}/nginx/conf/conf.d:/etc/nginx/conf.d:ro \
-nginx:1.20.1-alpine
+nginx:1.21.3-alpine
 ```
 
 
@@ -74,7 +86,9 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/nginx/data/www,dst=/usr/share/nginx/html \
 --mount type=bind,src=${NFS}/nginx/conf/nginx.conf,dst=/etc/nginx/nginx.conf,readonly \
 --mount type=bind,src=${NFS}/nginx/conf/conf.d,dst=/etc/nginx/conf.d,readonly \
-nginx:1.20.1-alpine
+--log-driver=loki \
+--log-opt loki-url="http://loki:3100/api/prom/push" \
+nginx:1.21.3-alpine
 
 #traefik参数(同时需去除--publish参数)
 --label traefik.enable=true \
