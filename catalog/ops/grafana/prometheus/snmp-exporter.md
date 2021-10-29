@@ -15,7 +15,7 @@
 ## 前置准备
 
 ```text
-wget -O ${NFS}/prometheus/conf/snmp.yml https://github.com/prometheus/snmp_exporter/raw/main/snmp.yml
+wget -O ${NFS}/prometheus/conf/snmp.yml https://raw.githubusercontent.com/prometheus/snmp_exporter/main/snmp.yml
 ```
 
 * Prometheus targets.json中添加内容

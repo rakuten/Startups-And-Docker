@@ -48,7 +48,7 @@ access_log /var/stdout;
 * 加装OpenTraceing插件\(可选\)
 
 ```bash
-wget -O ${NFS}/nginx/ngx_http_module.so.tgz https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.18.0/linux-amd64-nginx-1.20.1-ngx_http_module.so.tgz
+wget -O ${NFS}/nginx/ngx_http_module.so.tgz https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.21.0/linux-amd64-nginx-1.21.3-ngx_http_module.so.tgz
 tar zxvf ngx_http_module.so.tgz
 rm -rf ngx_http_module.so.tgz
 ```

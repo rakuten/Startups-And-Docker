@@ -53,7 +53,7 @@ Loki支持以下应用作为日志数据发送方
 ```bash
 #创建数据保存目录
 mkdir -p ${NFS}/loki/data
-chmod +w ${NFS}/loki/data
+chmod 777 ${NFS}/loki/data
 
 #安装Docker插件(可获取容器log)
 docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
@@ -82,6 +82,8 @@ docker service create --replicas 1 \
 -e JAEGER_SAMPLER_TYPE=const \
 -e JAEGER_SAMPLER_PARAM=1 \
 --label traefik.enable=false \
+--log-driver=loki \
+--log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
 grafana/loki:2.3.0
 ```
 

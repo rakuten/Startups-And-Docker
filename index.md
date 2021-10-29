@@ -72,7 +72,7 @@
 | [Artifactory](catalog/repository/artifactory-1.md) | 仓库管理器 | 1.4G | 8081 |  |
 | [Verdaccio](catalog/repository/verdaccio.md) | NPM仓库 |  | 4873 |  |
 | [Apt-Cacher NG](catalog/repository/apt-cacher-ng.md) | 系统源缓存服务 | 3.2M | 3142 |  |
-| [GOPROXY](catalog/repository/goproxy.md) | Go源缓存服务 |  | 8081 |  |
+| [GOPROXY](catalog/repository/goproxy.md) | Go源缓存服务 | 2.7M | 8081 |  |
 | [BaGet](catalog/repository/baget.md) | NuGet私有仓库 |  |  |  |
 
 ### 游戏
