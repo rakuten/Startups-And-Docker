@@ -4,14 +4,14 @@
 | 名称 | 用途 | 内存占用 |   端口映射 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
 | [Traefik](catalog/base/traefik.md) | 开源云原生网关 | 25M | 80,443,8080 | 替代Nginx转发功能 |
-| [APISix](catalog/base/apisix/) | API网关 | 103M | 9080,9443 | - |
+| [APISix](catalog/base/apisix/apisix.md) | API网关 | 103M | 9080,9443 | - |
 | [Nginx](catalog/base/nginx.md) | Web服务器 | 3M | 80,443 | - |
 | [NextCloud](catalog/base/nexcloud.md) | OAuth供应器,WebDAV,文件共享 | 126M | 80 | 可将文件存储至Minio |
 | [Cloudreve](catalog/base/cloudreve.md) | 开源网盘 | 33M | 5212 | 可将文件存储至公有云 |
 | [Minio](catalog/base/minio.md) | 对象存储 | 165M | 9000 | 兼容S3协议 |
 | [Wordpress](catalog/base/wordpress.md) | 开源博客平台 |  | 80 | - |
 | Flarum | 开源论坛 |  |  |  |
-| [Synapse](catalog/base/synapse/) | 聊天室服务器 | 87M | 8008,8448 |  |
+| [Synapse](catalog/base/synapse/synapse.md) | 聊天室服务器 | 87M | 8008,8448 |  |
 | [Dokuwiki](catalog/base/dokuwiki.md) | Wiki |  | 80,443 | - |
 | [Outline](catalog/base/outline.md) | Gitbook开源替代品 |  | 3000 |  |
 | [Ocserv](catalog/base/ocserv.md) | OpenConnect VPN服务端 | 3M | 443 | 兼容Cisco Anyconnect |
@@ -24,9 +24,9 @@
 | 名称 | 用途 | 内存占用 | 端口映射 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
 | [MariaDB](catalog/develop/database/mariadb.md) | MySQL替代品 |  | 3306 | - |
-| [MySQL](catalog/develop/database/mysql/) | 数据库 | 180M | 3306 | - |
-| [Postgres](catalog/develop/database/postgres/) | 数据库 | 7M | 5432 | - |
-| [MongoDB](catalog/develop/database/mongodb/) | 数据库 | 65M | 27017 |  |
+| [MySQL](catalog/develop/database/mysql/mysql.md) | 数据库 | 180M | 3306 | - |
+| [Postgres](catalog/develop/database/postgres/postgres.md) | 数据库 | 7M | 5432 | - |
+| [MongoDB](catalog/develop/database/mongodb/mongodb.md) | 数据库 | 65M | 27017 |  |
 | [MemCached](catalog/develop/cache/memcached.md) | 键值对\(Key-Value\)存储数据库 |  | 11211 |  |
 | [Redis](catalog/develop/cache/redis.md) | 键值对\(Key-Value\)存储数据库 | 4.5M | 6379 | - |
 | [RabbitMQ](catalog/develop/cache/rabbitmq.md) | 开源消息队列 | 83M | 5672,15672 |  |
@@ -40,7 +40,7 @@
 | :---: | :---: | :---: | :---: | :---: |
 | [Gitea](catalog/cicd/gitea.md) | 版本控制 | 115M | 22,3000 | Gogs分叉版本，支持OAuth2和S3 |
 | [Phabricator](catalog/cicd/phabricator.md) | 代码审核 |  | 8080,8443 | 界面比Gerrit更人性化 |
-| [Drone](catalog/cicd/drone/) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
+| [Drone](catalog/cicd/drone/drone.md) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
 | [Jenkins](catalog/cicd/jenkins.md) | 开源持续集成工具 | 1.051G | 8080,50000 | 适合发布客户端程序 |
 
 ### 运维环境
@@ -54,9 +54,9 @@
 | Alerta | 报警信息整合 |  |  | - |
 | [Dnsmasq](catalog/ops/dnsmasq.md) | DNS解析 | 9.45M | 53,8080 | - |
 | [JumpServer](catalog/ops/jumpserver.md) | 跳板机 | 1220M | 80,2222 |  |
-| [Zabbix](catalog/ops/zabbix/) | 企业级开源监控方案 | 37M | 162,10051 | - |
+| [Zabbix](catalog/ops/zabbix/zabbix-server.md) | 企业级开源监控方案 | 37M | 162,10051 | - |
 | [Etcd](catalog/ops/etcd.md) | Key/Value 存储系统 | 75M | 2379,2380 | 用于分享配置和服务发现 |
-| [Grafana](catalog/ops/grafana/) | 数据可视化工具 | 13M | 3000 | - |
+| [Grafana](catalog/ops/grafana/grafana.md) | 数据可视化工具 | 13M | 3000 | - |
 | [Grafana/Loki](catalog/ops/grafana/grafana-loki.md) | 日志聚合系统 | 35M | 3100 | 需配合Grafana使用 |
 | [Grafana/Promtail](catalog/ops/grafana/grafana-promtail.md) | 日志采集系统 | 20M |  | 需配合Loki使用 |
 | [Grafana/Tempo](catalog/ops/grafana/grafana-tempo.md) | 链路追踪系统 | 72M | 16686 | 需配合Loki使用 |
