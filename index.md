@@ -16,7 +16,7 @@
 | [Outline](catalog/base/outline.md) | Gitbook开源替代品 |  | 3000 |  |
 | [Ocserv](catalog/base/ocserv.md) | OpenConnect VPN服务端 | 3M | 443 | 兼容Cisco Anyconnect |
 | [ZeroTier](catalog/base/zerotier.md) | 点对点VPN |  | 9993 |  |
-| [Bitwarden](catalog/base/bitwarden.md) | 开源的密码管理服务 |  | 53,8080 | 供客户端程序使用 |
+| [Bitwarden](catalog/base/bitwarden.md) | 开源的密码管理服务 | 8.6M | 80,3012 | 供客户端程序使用 |
 | PhotoPrism | 照片分享平台 |  |  |  |
 
 ### 开发应用

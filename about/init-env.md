@@ -10,18 +10,15 @@
 #创建存储位置,可以用网络位置，这里我们先直接使用本地磁盘了
 #数据卷也是一个选择，但我倾向把数据直接存到NAS上去
 mkdir /nfs
-mkdir /nfs/docker
 
 #设置数据路径
-NFS=/nfs/docker
+NFS=/nfs
 
 #设置域名，请填写自己的域名
 #如果你有多个域名这一步可以略过
 DOMAIN=mytrade.fun
 
 #修改系统参数
-vi /etc/profile
-
 echo 'NFS=/nfs\\nDOMAIN=mytrade.fun'>>/etc/profile
 ```
 

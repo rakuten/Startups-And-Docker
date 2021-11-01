@@ -56,6 +56,9 @@ nextcloud
 --label traefik.http.routers.cloud-sec.tls.certresolver=dnsResolver \
 --label traefik.http.routers.cloud-sec.rule="Host(\`cloud.${DOMAIN}\`)" \
 --label traefik.http.routers.cloud-sec.entrypoints=https \
+--label traefik.http.middlewares.nextcloud_redirect.redirectregex.permanent=true \
+--label  "traefik.http.middlewares.nextcloud_redirect.redirectregex.regex=/.well-known/(card|cal)dav" \
+--label  "traefik.http.middlewares.nextcloud_redirect.redirectregex.replacement=/remote.php/dav/" \
 ```
 
 <!-- tabs:end -->
