@@ -4,9 +4,9 @@
 
 ## 简介
 
-兼容S3的对象存储服务
-
 ![](../../images/minio-console-dashboard1.png)
+
+兼容S3的对象存储服务
 
 ## EXPOSE
 
@@ -70,9 +70,8 @@ minio/minio server /data --console-address ":42311"
 --label traefik.http.routers.minio-sec.entrypoints=https \
 ```
 
-
 #### **Compose**
-{% code title="minio.yaml" %}
+
 ```yaml
 version: "3
 services:
@@ -106,8 +105,6 @@ services:
     restart: unless-stopped
     command: "minio server /data  --console-address \":42311\""
 ```
-{% endcode %}
-
 <!-- tabs:end -->
 
 

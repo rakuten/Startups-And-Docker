@@ -1,4 +1,4 @@
-# Bitwarden
+# Vaultwarden
 
 文档最后更新时间: {docsify-updated}
 
@@ -6,11 +6,13 @@
 
 ![](../../images/bitwarden.jpg)
 
-Bitwarden 是一款开源的密码管理器，支持多种浏览器，拥有 iOS、Android 客户端，采用本地加密，云同步的方式。
+Vaultwarden(原名:Bitwarden_RS)是Bitwarden(开源密码管理器)的另一种开源实现，此项目由社区维护，完全汉化并兼容上游Bitwarden接口，支持多种Bitwarden浏览器插件与 iOS、Android 客户端，2FA以及组织功能。
 
-个人用户直接使用官网免费服务即可，无需架设服务器，除非有有团队及SSO功能需求。
+相较于部署Bitwarden需要启动7个镜像并占用2G内存，Vaultwarden仅一个镜像，内存占用也仅8M出头。
 
-因为官方容器化流程需要启动7个镜像，使用上非常繁琐，所以我们采用vaultwarden/server镜像(原名:bitwardenrs/server)，并且此镜像作者是Bitwarden核心贡献者之一。
+目前Vaultwarden在功能上仅缺少Bitwarden企业版的部分功能(公共API、SSO、群组、自定义角色)
+
+个人用户推荐直接使用Bitwarden官网免费服务即可，无需架设服务器。
 
 ## EXPOSE
 
@@ -43,8 +45,10 @@ docker service create --replicas 1 \
 -e TZ=Asia/Shanghai \
 --mount type=bind,src=${NFS}/bitwarden,dst=/data \
 -e SIGNUPS_ALLOWED=true \
+-e INVITATIONS_ALLOWED=true \
 -e WEBSOCKET_ENABLED=true \
 -e WEB_VAULT_ENABLED=true \
+-e EMERGENCY_ACCESS_ALLOWED=false \
 -e DOMAIN=https://pwd.${DOMAIN} \
 -e LOG_FILE=/data/bitwarden.log \
 -e LOG_LEVEL=error \
@@ -85,7 +89,7 @@ vaultwarden/server:1.23.0
 
 
 
-#### **Comp**
+#### **Compose**
 
 ```yaml
 version: "3.5"
@@ -101,8 +105,10 @@ services:
       - "127.0.0.1:3012:3012"
     environment:
       - SIGNUPS_ALLOWED=true
+      - INVITATIONS_ALLOWED=true
       - WEBSOCKET_ENABLED=true
       - WEB_VAULT_ENABLED=true
+      - EMERGENCY_ACCESS_ALLOWED=false
       - DOMAIN=https://btwd.example.com
       - LOG_FILE=/data/bitwarden.log
       - LOG_LEVEL=error
@@ -147,9 +153,6 @@ networks:
 
 ```
 
-
-
-
 <!-- tabs:end -->
 
 
@@ -157,4 +160,5 @@ networks:
 ## 参考
 
 官网: https://bitwarden.com/
+Github: https://github.com/dani-garcia/vaultwarden
 反代文档: https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples
