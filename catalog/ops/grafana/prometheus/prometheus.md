@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/prometheus/prometheus.svg)](https://github.com/prometheus/prometheus/releases/latest)
+
 ## 简介
 
 时序数据库

@@ -6,6 +6,10 @@
 
 ![](../../images/hero-3.png)
 
+Phabricator 是一套开源的用于开发软件的工具。它包括用于代码审查、存储库托管、错误跟踪、项目管理等的应用程序。
+
+非常可惜的是从2021年6月1日后项目将不再被积极维护(并不是完全停止更新)，但现有功能已经足够使用。
+
 ## EXPOSE
 
 | 端口 | 用途 |
@@ -53,35 +57,36 @@ bitnami/phabricator:latest
 
 
 #### **Swarm**
-    docker service create --replicas 1 \
-    --name phab \
-    --hostname phab.${DOMAIN} \
-    -e TZ=Asia/Shanghai \
-    --network staging \
-    --mount type=bind,src=${NFS}/phab/data,dst=/bitnami/phabricator \
-    --mount type=bind,src=${NFS}/phab/exten,dst=/opt/bitnami/phabricator/src/extensions \
-    --mount type=bind,src=/etc/timezone,dst=/etc/timezone:ro \
-    --mount type=bind,src=/etc/localtime,dst=/etc/localtime:ro \
-    -e PHABRICATOR_DATABASE_HOST=mariadb \
-    -e PHABRICATOR_DATABASE_ADMIN_USER=${MYSQL_USER} \
-    -e PHABRICATOR_DATABASE_ADMIN_PASSWORD=${MYSQL_PWD} \
-    -e PHABRICATOR_HOST=phab.${DOMAIN} \
-    -e PHABRICATOR_USERNAME=admin \
-    -e PHABRICATOR_PASSWORD=password123 \
-    -e PHABRICATOR_USE_LFS=true \
-    bitnami/phabricator:latest
+```bash
+docker service create --replicas 1 \
+--name phab \
+--hostname phab.${DOMAIN} \
+-e TZ=Asia/Shanghai \
+--network staging \
+--mount type=bind,src=${NFS}/phab/data,dst=/bitnami/phabricator \
+--mount type=bind,src=${NFS}/phab/exten,dst=/opt/bitnami/phabricator/src/extensions \
+--mount type=bind,src=/etc/timezone,dst=/etc/timezone:ro \
+--mount type=bind,src=/etc/localtime,dst=/etc/localtime:ro \
+-e PHABRICATOR_DATABASE_HOST=mariadb \
+-e PHABRICATOR_DATABASE_ADMIN_USER=${MYSQL_USER} \
+-e PHABRICATOR_DATABASE_ADMIN_PASSWORD=${MYSQL_PWD} \
+-e PHABRICATOR_HOST=phab.${DOMAIN} \
+-e PHABRICATOR_USERNAME=admin \
+-e PHABRICATOR_PASSWORD=password123 \
+-e PHABRICATOR_USE_LFS=true \
+bitnami/phabricator:latest
 
-    #traefik参数
-    --label traefik.enable=true \
-    --label traefik.docker.network=staging \
-    --label traefik.http.services.gitea.loadbalancer.server.port=8080 \
-    --label traefik.http.routers.phab.rule="Host(\`phab.${DOMAIN}\`)" \
-    --label traefik.http.routers.phab.entrypoints=http \
-    --label traefik.http.routers.phab-sec.tls=true \
-    --label traefik.http.routers.phab-sec.tls.certresolver=dnsResolver \
-    --label traefik.http.routers.phab-sec.rule="Host(\`phab.${DOMAIN}\`)" \
-    --label traefik.http.routers.phab-sec.entrypoints=https \
-
+#traefik参数
+--label traefik.enable=true \
+--label traefik.docker.network=staging \
+--label traefik.http.services.gitea.loadbalancer.server.port=8080 \
+--label traefik.http.routers.phab.rule="Host(\`phab.${DOMAIN}\`)" \
+--label traefik.http.routers.phab.entrypoints=http \
+--label traefik.http.routers.phab-sec.tls=true \
+--label traefik.http.routers.phab-sec.tls.certresolver=dnsResolver \
+--label traefik.http.routers.phab-sec.rule="Host(\`phab.${DOMAIN}\`)" \
+--label traefik.http.routers.phab-sec.entrypoints=https \
+```
 
 #### **Compose**
 ```bash
@@ -145,4 +150,5 @@ $ docker-compose up -d
 
 官网: [https://www.phacility.com/](https://www.phacility.com/)  
 官方文档: [https://secure.phabricator.com/book/phabricator/](https://secure.phabricator.com/book/phabricator/)
+Github: https://github.com/phacility/phabricator
 

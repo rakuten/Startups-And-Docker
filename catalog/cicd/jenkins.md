@@ -4,7 +4,7 @@
 
 ## 简介
 
-
+[![GitHub Release](https://img.shields.io/github/release/jenkinsci/jenkins.svg)](https://github.com/jenkinsci/jenkins/releases/latest)
 
 ## EXPOSE
 
@@ -67,4 +67,5 @@ jenkins/jenkins:alpine
 ##  参考
 
 官网: [https://www.jenkins.io/](https://www.jenkins.io/)
+Github: https://github.com/jenkinsci/jenkins
 

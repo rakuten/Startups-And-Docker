@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/go-gitea/gitea.svg)](https://github.com/go-gitea/gitea/releases/latest)
+
 ## 简介
 
 ![](../../images/screenshot.png)

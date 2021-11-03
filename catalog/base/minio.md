@@ -2,6 +2,8 @@
 
 文档最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/minio/minio.svg)](https://github.com/minio/minio/releases/latest)
+
 ## 简介
 
 ![](../../images/minio-console-dashboard1.png)

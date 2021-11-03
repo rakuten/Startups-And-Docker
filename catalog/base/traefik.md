@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/traefik/traefik.svg)](https://github.com/traefik/traefik/releases/latest)
+
 ## 简介
 
 开源云原生网关

@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/matomo-org/matomo.svg)](https://github.com/matomo-org/matomo/releases/latest)
+
 ## 简介
 
 原名为pwiki，开源用户行为追踪系统

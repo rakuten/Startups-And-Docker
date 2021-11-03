@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/matrix-org/synapse.svg)](https://github.com/matrix-org/synapse/releases/latest)
+
 ## 简介
 
 Synapse是riot/matrix的官方服务器端

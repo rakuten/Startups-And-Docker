@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/grafana/grafana.svg)](https://github.com/grafana/grafana/releases/latest)
+
 ## 简介
 
 数据可视化工具

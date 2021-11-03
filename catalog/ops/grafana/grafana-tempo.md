@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/grafana/tempo.svg)](https://github.com/grafana/tempo/releases/latest)
+
 ## 简介
 
 与 Grafana，Prometheus 和 Loki 深度集成分布式跟踪后端，可以使用 Jaeger，Zipkin，OpenCensus 和 OpenTelemetry 中的任何一个追踪协议。

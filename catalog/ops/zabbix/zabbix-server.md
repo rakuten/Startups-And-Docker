@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/tag/zabbix/zabbix.svg)](https://github.com/zabbix/zabbix/tags)
+
 ## 简介
 
 企业级开源监控方案

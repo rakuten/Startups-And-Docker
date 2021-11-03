@@ -2,9 +2,13 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/locustio/locust.svg)](https://github.com/locustio/locust/releases/latest)
+
 ## 简介
 
+![Locust](../../images/locust.png)
 
+开源负载测试工具，使用 Python 代码定义用户行为，可同时模拟数百万个用户。
 
 ## EXPOSE
 

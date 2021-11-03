@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/drone/drone.svg)](https://github.com/drone/drone/releases/latest)
+
 ## 简介
 
 ![](../../../images/screenshot_build_success.png)
@@ -24,16 +26,23 @@ mkdir ${NFS}/drone
 
 编译企业版\(可解除5000次限制\)
 
+- 创建docker build文件
+
 ```bash
-#docker build --rm -f docker/Dockerfile -t drone .
- 
+touch drone.yaml
+```
+
+- drone.yaml
+
+```bash
+
 FROM golang:1.16.5-alpine3.14 AS Builder
 
 RUN sed -i 's/https:\/\/dl-cdn.alpinelinux.org/http:\/\/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/repositories && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk add build-base
 
-ENV DRONE_VERSION 2.2.0
+ENV DRONE_VERSION 2.4.0
 
 WORKDIR /src
 
@@ -42,7 +51,7 @@ RUN wget https://download.fastgit.org/drone/drone/archive/refs/tags/v${DRONE_VER
     tar zxvf v${DRONE_VERSION}.tar.gz && \
     rm v${DRONE_VERSION}.tar.gz
 # OR with offline tarball
-# ADD drone-2.2.0.tar.gz /src/
+# ADD drone-2.4.0.tar.gz /src/
 
 WORKDIR /src/drone-${DRONE_VERSION}
 
@@ -87,9 +96,19 @@ ENV DRONE_DATADOG_ENABLED=true
 ENV DRONE_DATADOG_ENDPOINT=https://stats.drone.ci/api/v1/series
 
 COPY --from=Certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=Builder /src/drone-2.2.0/drone-server /bin/drone-server
+COPY --from=Builder /src/drone-2.4.0/drone-server /bin/drone-server
 ENTRYPOINT ["/bin/drone-server"]
 ```
+
+- 生成镜像
+
+```bash
+docker build --rm -f drone.yaml -t drone:2.4.0 .
+```
+
+
+
+
 
 ## 启动命令
 
@@ -110,7 +129,7 @@ docker run -d \
 -e DRONE_RPC_SECRET=MWckgvhjqg4E3eQ0ptg2X4iNC6oQiyU4LLvO4eXFFuHtrTkIy2vwcAc3erB5f9reM \
 -p 80:80 \
 -p 443:443 \
-drone/drone
+drone:2.4.0
 ```
 
 
@@ -134,7 +153,7 @@ docker service create --replicas 1 \
 -e DRONE_RPC_SECRET=MWckgvhjqg4E3eQ0ptg2X4iNC6oQiyU4LLvO4eXFFuHtrTkIy2vwcAc3erB5f9reM \
 --mount type=bind,src=${NFS}/drone,dst=/data \
 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-drone/drone
+drone:2.4.0
 
 #traefik参数
 --label traefik.enable=true \

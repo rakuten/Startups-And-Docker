@@ -2,9 +2,11 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/apache/apisix.svg)](https://github.com/apache/apisix/releases/latest)
+
 ## 简介
 
-![Apisix Dashboard](../../../images/112923280-a0a94080-912b-11eb-8b83-3960778ecf8a.png)
+![Apisix Dashboard](../../../images/apisix.png)
 
 ## EXPOSE
 
