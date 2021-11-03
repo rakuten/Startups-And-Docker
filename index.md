@@ -10,7 +10,7 @@
 | [Cloudreve](catalog/base/cloudreve.md) | 开源网盘 | 33M | 5212 | 可将文件存储至公有云 |
 | [Minio](catalog/base/minio.md) | 对象存储 | 165M | 9000 | 兼容S3协议 |
 | [Wordpress](catalog/base/wordpress.md) | 开源博客平台 |  | 80 | - |
-| Flarum | 开源论坛 |  |  |  |
+| [Flarum](catalog/base/flarum.md) | 开源论坛 | 65M | 8000 |  |
 | [Synapse](catalog/base/synapse/synapse.md) | 聊天室服务器 | 87M | 8008,8448 |  |
 | [Dokuwiki](catalog/base/dokuwiki.md) | Wiki |  | 80,443 | - |
 | [Outline](catalog/base/outline.md) | Gitbook开源替代品 |  | 3000 |  |
@@ -41,6 +41,7 @@
 | [Gitea](catalog/cicd/gitea.md) | 版本控制 | 115M | 22,3000 | Gogs分叉版本，支持OAuth2和S3 |
 | [Phabricator](catalog/cicd/phabricator.md) | 代码审核 |  | 8080,8443 | 界面比Gerrit更人性化 |
 | [Drone](catalog/cicd/drone/drone.md) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
+| [Locust](catalog/cicd/locust.md) | 压力测试 | - | - | - |
 | [Jenkins](catalog/cicd/jenkins.md) | 开源持续集成工具 | 1.051G | 8080,50000 | 适合发布客户端程序 |
 
 ### 运维环境

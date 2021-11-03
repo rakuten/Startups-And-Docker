@@ -13,6 +13,7 @@
     * [NexCloud](catalog/base/nexcloud.md)
     * [Minio](catalog/base/minio.md)
     * [Wordpress](catalog/base/wordpress.md)
+    * [Flarum](catalog/base/flarum.md)
     * [Dokuwiki](catalog/base/dokuwiki.md)
     * [Cloudreve](catalog/base/cloudreve.md)
     * [Outline](catalog/base/outline.md)
