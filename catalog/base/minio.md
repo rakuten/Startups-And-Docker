@@ -36,6 +36,11 @@ docker run -d \
 --restart unless-stopped \
 --network=backend \
 -e TZ=Asia/Shanghai \
+-e "MINIO_REGION_NAME=Area1" \
+-e "MINIO_BROWSER=on" \
+-e "MINIO_ROOT_USER=minioadmin" \
+-e "MINIO_ROOT_PASSWORD=wJalrXUtnFEMI/K7MD8NG/bPxRfiBY7XAMPLEKEY" \
+-e "MINIO_SERVER_URL=http://minio.${DOMAIN}:9000" \
 -v ${NFS}/minio/data:/data \
 -v ${NFS}/minio/conf:/root/.minio \
 -p 9000:9000 \
@@ -54,6 +59,9 @@ docker service create --replicas 1 \
 -e "MINIO_BROWSER=on" \
 -e "MINIO_ROOT_USER=minioadmin" \
 -e "MINIO_ROOT_PASSWORD=wJalrXUtnFEMI/K7MD8NG/bPxRfiBY7XAMPLEKEY" \
+-e "MINIO_SERVER_URL=http://minio.${DOMAIN}:9000" \
+-p 9000:9000 \
+-p 42311:42311 \
 --mount type=bind,src=${NFS}/minio/data,dst=/data \
 --mount type=bind,src=${NFS}/minio/conf,dst=/root/.minio \
 minio/minio server /data --console-address ":42311"
@@ -88,6 +96,7 @@ services:
       MINIO_BROWSER: "on"
       MINIO_ROOT_USER: "minioadmin"
       MINIO_ROOT_PASSWORD: "wJalrXUtnFEMI/K7MD8NG/bPxRfiBY7XAMPLEKEY"
+      MINIO_SERVER_URL: "http://minio.${DOMAIN}:9000"
     labels: 
       - traefik.enable: true
       - traefik.docker.network: staging
