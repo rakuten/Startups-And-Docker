@@ -50,7 +50,6 @@
   * [运维应用]()
     * [Keycloak](catalog/ops/keycloak.md)
     * [JumpServer](catalog/ops/jumpserver.md)
-    * [Elkarbackup](catalog/ops/elkarbackup.md)
     * [Zabbix](catalog/ops/zabbix/zabbix-server.md)
       * [Zabbix-Client](catalog/ops/zabbix/zabbix-client.md)
     * [Etcd](catalog/ops/etcd.md)
