@@ -65,6 +65,8 @@
       * [Grafana/Tempo](catalog/ops/grafana/grafana-tempo.md)
     * [Portainer](catalog/ops/portainer.md)
     * [Matomo](catalog/ops/matomo.md)
+    * [Elkarbackup](catalog/ops/elkarbackup.md)
+    * [Syncthing](catalog/ops/syncthing.md)
     * [Dnsmasq](catalog/ops/dnsmasq.md)
     * [SMTP](catalog/ops/smtp.md)
   * [私有仓库]()

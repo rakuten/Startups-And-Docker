@@ -51,7 +51,8 @@
 | [Portainer](catalog/ops/portainer.md) | 网页版Docker管理 | 16M | 9000 | - |
 | [Keycloak](catalog/ops/keycloak.md) | 身份和访问管理解决方案 |  | 8080 |  |
 | [Matomo](catalog/ops/matomo.md) |  |  | 80 | - |
-| Elkarbackup | 数据备份 |  |  | - |
+| [Elkarbackup](catalog/ops/elkarbackup.md) | 数据备份 |  |  | 8000 |
+| [Syncthing](catalog/ops/syncthing.md) | P2P数据同步 |  |  | - |
 | Alerta | 报警信息整合 |  |  | - |
 | [Dnsmasq](catalog/ops/dnsmasq.md) | DNS解析 | 9.45M | 53,8080 | - |
 | [JumpServer](catalog/ops/jumpserver.md) | 跳板机 | 1220M | 80,2222 |  |

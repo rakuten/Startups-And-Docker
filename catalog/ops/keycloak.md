@@ -1,6 +1,8 @@
-# Keycloak
-
+# Keycloak 
 本页最后更新时间: {docsify-updated}
+
+[![GitHub Release](https://img.shields.io/github/release/keycloak/keycloak.svg)](https://github.com/keycloak/keycloak/releases/latest)
+
 
 ## 简介
 
