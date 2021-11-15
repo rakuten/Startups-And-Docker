@@ -38,6 +38,7 @@ docker run -d \
 --restart unless-stopped \
 --network=backend \
 -e TZ=Asia/Shanghai \
+-e "MINIO_PROMETHEUS_AUTH_TYPE=public" \
 -e "MINIO_REGION_NAME=Area1" \
 -e "MINIO_BROWSER=on" \
 -e "MINIO_ROOT_USER=minioadmin" \
@@ -57,6 +58,7 @@ docker service create --replicas 1 \
 --name minio \
 --network staging \
 -e TZ=Asia/Shanghai \
+-e "MINIO_PROMETHEUS_AUTH_TYPE=public" \
 -e "MINIO_REGION_NAME=Area1" \
 -e "MINIO_BROWSER=on" \
 -e "MINIO_ROOT_USER=minioadmin" \
@@ -94,6 +96,7 @@ services:
       - ${NFS}/minio/conf:/root/.minio
     environment:
       TZ: Asia/Shanghai
+      MINIO_PROMETHEUS_AUTH_TYPE:"public"
       MINIO_REGION_NAME: "Area1"
       MINIO_BROWSER: "on"
       MINIO_ROOT_USER: "minioadmin"

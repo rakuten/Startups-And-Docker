@@ -33,6 +33,7 @@ docker run -d \
 --name nextcloud \
 --restart unless-stopped \
 -e TZ=Asia/Shanghai \
+-e NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN} \
 -v ${NFS}/nextcloud:/var/www/html \
 -p 8080:80 \
 nextcloud
@@ -45,6 +46,7 @@ docker service create --replicas 1 \
 --name nextcloud \
 --network staging \
 -e TZ=Asia/Shanghai \
+-e NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN} \
 --mount type=bind,src=${NFS}/nextcloud,dst=/var/www/html \
 nextcloud
 

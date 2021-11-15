@@ -38,7 +38,10 @@ docker run -d \
 --secret MYSQL_PWD \
 -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/MYSQL_PWD \
 -v ${NFS}/mysql:/var/lib/mysql \
-mysql --lower_case_table_names=1
+mysql \ 
+--lower_case_table_names=1 \
+--character-set-server=utf8mb4 \
+--collation-server=utf8mb4_unicode_ci
 ```
 
 
@@ -53,8 +56,33 @@ docker service create --replicas 1 \
 -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/MYSQL_PWD \
 --mount type=bind,src=${NFS}/mysql,dst=/var/lib/mysql \
 --label traefik.enable=false \
-mysql --lower_case_table_names=1
+mysql \ 
+--lower_case_table_names=1 \
+--character-set-server=utf8mb4 \
+--collation-server=utf8mb4_unicode_ci
 ```
+
+Compose
+
+```bash
+version: '3'
+services:
+  mysql:
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=root
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3306:3306"
+    restart: always
+    command: [
+      '--lower_case_table_names=1',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+    ]
+```
+
+
 
 <!-- tabs:end -->
 
