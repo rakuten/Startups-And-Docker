@@ -45,8 +45,9 @@
     * [Phabricator](catalog/cicd/phabricator.md)
     * [Drone](catalog/cicd/drone/drone.md)
       * [Drone-Agent](catalog/cicd/drone/drone-agent.md)
-    * [Jenkins](catalog/cicd/jenkins.md)
     * [Locust](catalog/cicd/locust.md)
+    * [Jenkins](catalog/cicd/jenkins.md)
+    * [SonarQube](catalog/cicd/sonarqube.md)
   * [运维应用]()
     * [Keycloak](catalog/ops/keycloak.md)
     * [JumpServer](catalog/ops/jumpserver.md)
@@ -68,6 +69,7 @@
     * [Syncthing](catalog/ops/syncthing.md)
     * [Dnsmasq](catalog/ops/dnsmasq.md)
     * [SMTP](catalog/ops/smtp.md)
+    
   * [私有仓库]()
     * [Harbor](catalog/repository/harbor.md)
     * [Registry](catalog/repository/registry.md)
