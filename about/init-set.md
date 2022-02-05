@@ -28,7 +28,6 @@ wget -O ${NFS}/initset/conf/tempo-local.yaml https://raw.githubusercontent.com/g
 
 ## 
 
-{% code title="docker-compose.yaml" %}
 ```yaml
 version: "3"
 secrets: 
@@ -171,5 +170,4 @@ services:
         -loki-url: "http://loki:3100/api/prom/push
     restart: unless-stopped
 ```
-{% endcode %}
 

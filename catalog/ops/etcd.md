@@ -20,7 +20,7 @@
 ```bash
 #创建数据保存目录
 mkdir ${NFS}/etcd
-chmod 777 $NFS/etcd
+chmod 775 $NFS/etcd
 ```
 
 ## 启动命令
@@ -35,7 +35,7 @@ docker run -d \
 -p 2380:2380  \
 -e TZ=Asia/Shanghai \
 -e ETCD_ENABLE_V2=true \
---env ALLOW_NONE_AUTHENTICATION=yes \
+-e ETCD_ROOT_PASSWORD=etcdpwd \
 --env ETCD_ADVERTISE_CLIENT_URLS=http://etcd-server:2379 \
 bitnami/etcd:latest --enable-v2=true
 ```
@@ -48,7 +48,7 @@ docker service create --replicas 1 \
 --network staging \
 -e TZ=Asia/Shanghai \
 -e ETCD_ENABLE_V2=true \
--e ALLOW_NONE_AUTHENTICATION=yes \
+-e ETCD_ROOT_PASSWORD=etcdpwd \
 -e ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379 \
 -e ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379 \
 --mount type=bind,src=${NFS}/etcd,dst=/bitnami/etcd \

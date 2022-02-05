@@ -59,8 +59,8 @@ curl -X POST http://localhost:8090/wallet/getnowblock
 #### 测试帐号
 
 > 本地网络环境包含一个见证人帐号及一些TRX:  
-> `Private Key: da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0  
-> Address: TPL66VK2gCXNCD7EJg9pgJRfqcRazjhUZY`
+> `Private Key: da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0`
+> `Address: TPL66VK2gCXNCD7EJg9pgJRfqcRazjhUZY`
 
 ## 配置参数
 

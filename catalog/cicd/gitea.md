@@ -67,7 +67,7 @@ gitea/gitea
 ```
 
 
-{% tab title="" %}
+#### **Compose**
 ```
 version: "3"
 
@@ -82,6 +82,9 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
+      - DOMAIN="gitea.${DOMAIN}"
+      - SSH_DOMAIN="gitea.${DOMAIN}"
+      - SSH_PORT=8022
       - GITEA__database__DB_TYPE=postgres
       - GITEA__database__HOST=db:5432
       - GITEA__database__NAME=gitea
@@ -116,7 +119,7 @@ services:
 
 <!-- tabs:end -->
 
-> 如从内网其它主机导入版本库不允许从私有IP导入，可通过在${NFS}/gitea/gitea/conf/app.ini中添加以下参数并重启解决
+> 如需要从内网其它主机导入版本库，出现提示不允许从私有IP导入，可通过在${NFS}/gitea/gitea/conf/app.ini中添加以下参数并重启解决
 
 ```text
 [migrations]
@@ -124,8 +127,6 @@ ALLOW_LOCALNETWORKS = true
 ```
 
 ## OAuth2设置
-
-> 到目前为止Gitea1.14.1与1.15-dev都无法正常使用OAuth2，报500错误
 
 ### NextCloud
 

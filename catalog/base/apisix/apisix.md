@@ -15,6 +15,13 @@
 | 9080 | HTTP API端口 |
 | 9443 | HTTPS API端口 |
 
+## 前置准备
+
+```bash
+mkdir ${NFS}/apisix
+cd ${NFS}/apisix
+wget https://raw.githubusercontent.com/apache/apisix/master/conf/config.yaml -O ${NFS}/apisix/config.yaml
+```
 
 
 ## 启动命令
@@ -28,9 +35,10 @@ docker run -d \
 -e TZ=Asia/Shanghai \
 --name apisix
 -e TZ=Asia/Shanghai \
--v ${NFS}/apisix/apisix/config.yaml:/usr/local/apisix/conf/config.yaml 
+-v ${NFS}/apisix/config.yaml:/usr/local/apisix/conf/config.yaml 
 -p 9080:9080 \
-apache/apisix:2.6-alpine
+-p 9443:9443 \
+apache/apisix:2.12.0-alpine
 ```
 
 
@@ -40,10 +48,11 @@ docker service create --replicas 1 \
 --name apisix \
 --network staging \
 -e TZ=Asia/Shanghai \
--p 9080:9080 \
--p 9443:9443 \
+--publish published=9080,target=9080,mode=host \
+--publish published=9443,target=9443,mode=host \
 --mount type=bind,src=${NFS}/apisix/config.yaml,dst=/usr/local/apisix/conf/config.yaml \
-apache/apisix:2.6-alpine
+--label traefik.enable=false \
+apache/apisix:2.12.0-alpine
 ```
 
 <!-- tabs:end -->
@@ -51,4 +60,4 @@ apache/apisix:2.6-alpine
 
 
 ## 参考
-
+官网: https://apisix.apache.org/zh/

@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/apache/apisix-dashboard.svg)](https://github.com/apache/apisix-dashboard/releases/latest)
+
 ## 简介
 
 
@@ -11,10 +13,12 @@
 | 端口 | 用途 |
 | :--- | :--- |
 | 9000 | 管理页面 |
-| 9080 |  |
-| 2379 |  |
 
 
+## 前置准备
+```bash
+wget https://raw.githubusercontent.com/apache/apisix-dashboard/master/api/conf/conf.yaml -O ${NFS}/apisix/dashboard.yaml
+```
 
 ## 启动命令
 
@@ -28,7 +32,7 @@ docker run -d \
 --name apisix-dashboard
 -v ${NFS}/apisix/dashboard.yaml:/usr/local/apisix-dashboard/conf/conf.yaml 
 -p 9000:9000 
-apache/apisix-dashboard:2.7
+apache/apisix-dashboard:2.10.1-alpine
 ```
 
 
@@ -38,8 +42,9 @@ docker service create --replicas 1 \
 --name apisix-dashboard \
 --network staging \
 -e TZ=Asia/Shanghai \
+-p 9000:9000 \
 --mount type=bind,src=${NFS}/apisix/dashboard.yaml,dst=/usr/local/apisix-dashboard/conf/conf.yaml \
-apache/apisix-dashboard:2.7
+apache/apisix-dashboard:2.10.1-alpine
 
 #traefik参数
 --label traefik.enable=true \
@@ -55,7 +60,7 @@ apache/apisix-dashboard:2.7
 
 <!-- tabs:end -->
 
-> Dashboard版本号与相应的Apisix版本的并不同步，目前高0.1
+> Dashboard版本号与相对应的ApiSix版本的并不同步，目前低0.1
 
 ## 参考
 

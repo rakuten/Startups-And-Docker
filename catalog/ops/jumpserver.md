@@ -26,9 +26,9 @@
 3. 生成随机加密密钥
 
 ```bash
-if [ "$SECRET_KEY" = "" ]; then SECRET_KEY=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 50`; echo "SECRET_KEY=$SECRET_KEY" >> ~/.bashrc; echo $SECRET_KEY; else echo $SECRET_KEY; fi
+if [ "$JMS_SECRET_KEY" = "" ]; then JMS_SECRET_KEY=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 50`; echo "JMS_SECRET_KEY=$JMS_SECRET_KEY" >> ~/.bashrc; echo $JMS_SECRET_KEY; else echo $JMS_SECRET_KEY; fi
 
-if [ "$BOOTSTRAP_TOKEN" = "" ]; then BOOTSTRAP_TOKEN=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`; echo "BOOTSTRAP_TOKEN=$BOOTSTRAP_TOKEN" >> ~/.bashrc; echo $BOOTSTRAP_TOKEN; else echo $BOOTSTRAP_TOKEN; fi
+if [ "$JMS_BOOTSTRAP_TOKEN" = "" ]; then JMS_BOOTSTRAP_TOKEN=`cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`; echo "JMS_BOOTSTRAP_TOKEN=$JMS_BOOTSTRAP_TOKEN" >> ~/.bashrc; echo $JMS_BOOTSTRAP_TOKEN; else echo $JMS_BOOTSTRAP_TOKEN; fi
 ```
 
 4. 初始化数据库
@@ -54,7 +54,7 @@ mkdir -p ${NFS}/jumpserver/logs/nginx
 
 ```bash
 #把staging改为你的网络名
-docker network inspect staging
+docker network inspect staging | grep Subnet
 #复制 "Config">"Subnet"中的内容如 "10.0.0.0/24"，然后赋值给启动命令中的DOCKER_SUBNET变量
 ```
 
@@ -72,8 +72,8 @@ docker run -d \
 -h jumpserver \
 -p 80:80 \
 -p 2222:2222 \
--e SECRET_KEY=$SECRET_KEY \
--e BOOTSTRAP_TOKEN=$BOOTSTRAP_TOKEN \
+-e SECRET_KEY=$JMS_SECRET_KEY \
+-e BOOTSTRAP_TOKEN=$JMS_BOOTSTRAP_TOKEN \
 -e DB_HOST=mysql \
 -e DB_USER=jumpserver \
 -e DB_PASSWORD="abcd@1234" \
@@ -92,8 +92,8 @@ docker service create --replicas 1 \
 -e TZ=Asia/Shanghai \
 --name jms \
 -e DOCKER_SUBNET=10.0.0.0/24 \
--e SECRET_KEY=$SECRET_KEY \
--e BOOTSTRAP_TOKEN=$BOOTSTRAP_TOKEN \
+-e SECRET_KEY=$JMS_SECRET_KEY \
+-e BOOTSTRAP_TOKEN=$JMS_BOOTSTRAP_TOKEN \
 -e DB_HOST=mysql \
 -e DB_USER=jumpserver \
 -e DB_PASSWORD="abcd@1234" \
@@ -119,9 +119,7 @@ jumpserver/jms_all
 
 <!-- tabs:end -->
 
-{% hint style="info" %}
 DOCKER\_SUBNET必须为前置第6步中查到的值，不然远程连接会失败
-{% endhint %}
 
 ## 常见问题
 

@@ -21,7 +21,7 @@
 mkdir ${NFS}/mysql
 
 #将密码保存进Docker Secret
-echo 'Test123456' | docker secret create MYSQL_PWD -
+echo 'Test123456' | docker secret create mysql_pwd -
 ```
 
 ## 启动命令
@@ -35,8 +35,8 @@ docker run -d \
 --net backend \
 -p 3306:3306 \
 -e TZ=Asia/Shanghai \
---secret MYSQL_PWD \
--e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/MYSQL_PWD \
+--secret mysql_pwd \
+-e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_pwd \
 -v ${NFS}/mysql:/var/lib/mysql \
 mysql \ 
 --lower_case_table_names=1 \
@@ -52,8 +52,8 @@ docker service create --replicas 1 \
 --network staging \
 -p 3306:3306 \
 -e TZ=Asia/Shanghai \
---secret MYSQL_PWD \
--e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/MYSQL_PWD \
+--secret mysql_pwd \
+-e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_pwd \
 --mount type=bind,src=${NFS}/mysql,dst=/var/lib/mysql \
 --label traefik.enable=false \
 mysql \ 
@@ -62,7 +62,7 @@ mysql \
 --collation-server=utf8mb4_unicode_ci
 ```
 
-Compose
+#### **Compose**
 
 ```bash
 version: '3'

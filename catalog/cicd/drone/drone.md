@@ -42,7 +42,7 @@ RUN sed -i 's/https:\/\/dl-cdn.alpinelinux.org/http:\/\/mirrors.tuna.tsinghua.ed
     echo "Asia/Shanghai" > /etc/timezone && \
     apk add build-base
 
-ENV DRONE_VERSION 2.4.0
+ENV DRONE_VERSION 2.9.1
 
 WORKDIR /src
 
@@ -51,7 +51,7 @@ RUN wget https://download.fastgit.org/drone/drone/archive/refs/tags/v${DRONE_VER
     tar zxvf v${DRONE_VERSION}.tar.gz && \
     rm v${DRONE_VERSION}.tar.gz
 # OR with offline tarball
-# ADD drone-2.4.0.tar.gz /src/
+# ADD drone-2.9.1.tar.gz /src/
 
 WORKDIR /src/drone-${DRONE_VERSION}
 
@@ -96,14 +96,14 @@ ENV DRONE_DATADOG_ENABLED=true
 ENV DRONE_DATADOG_ENDPOINT=https://stats.drone.ci/api/v1/series
 
 COPY --from=Certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=Builder /src/drone-2.4.0/drone-server /bin/drone-server
+COPY --from=Builder /src/drone-2.9.1/drone-server /bin/drone-server
 ENTRYPOINT ["/bin/drone-server"]
 ```
 
 - 生成镜像
 
 ```bash
-docker build --rm -f drone.yaml -t drone:2.4.0 .
+docker build --rm -f drone.yaml -t drone:2.9.1 .
 ```
 
 

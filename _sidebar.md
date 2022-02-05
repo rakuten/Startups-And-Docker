@@ -3,6 +3,7 @@
 * [关于](about/index.md)
   * [初始环境](about/init-env.md)
   * [~初始套装~](about/init-set.md)
+  * [单点登录](about/sso.md)
 
 * [应用分类]()
   * [基础应用]()

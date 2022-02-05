@@ -20,7 +20,7 @@
 * 运行[redis](../images-develop/cache/redis.md)
 * 运行[minio](minio.md)
 * 在minio中创建一个名为`outline`的桶
-* 在postgres数据库中创建一个名为`outliner`的库&#x20;
+* 在postgres数据库中创建一个名为`outliner`的库
 * 生成管理密钥
 
 ```bash
@@ -31,9 +31,6 @@ if [ "$OUTLINE_SECRET" = "" ]; then OUTLINE_SECRET=`cat /dev/urandom | tr -dc a-
 ## 启动命令
 
 <!-- tabs:start -->
-#### **Docker**
-
-
 
 #### **Swarm**
 ```bash
@@ -72,7 +69,6 @@ yarn sequelize:migrate --env production-ssl-disabled && yarn start
 
 
 #### **Compose**
-{% code title="outline.yml" %}
 ```yaml
 version: "3"
 services:
@@ -114,7 +110,6 @@ services:
 networks:
   staging:
 ```
-{% endcode %}
 
 <!-- tabs:end -->
 
