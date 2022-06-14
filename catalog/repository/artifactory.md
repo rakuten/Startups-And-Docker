@@ -9,8 +9,8 @@
 
 Nexus3的竞品，功能更强大一些\([与其它产品的对比](https://www.eficode.com/blog/artifactory-nexus-proget)\)，而且虽然镜像文件比Nexus3大300M，但初始运行内存只有1.4G，反而比Nexus3少300M
 
-默认用户，密码  
-admin password
+默认用户: admin
+密码: password
 
 ## EXPOSE
 

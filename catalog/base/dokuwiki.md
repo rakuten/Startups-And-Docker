@@ -10,8 +10,8 @@
 
 | 端口 | 用途 |
 | :--- | :--- |
-| 80 | HTTP |
-| 443 | HTTPS |
+| 8080 | HTTP |
+| 8443 | HTTPS |
 
 
 
@@ -30,7 +30,7 @@ mkdir ${NFS}/doku
 docker run -d \
 --name dokuwiki \
 --net backend \
--p 80:80 -p 443:443 \
+-p 8080:8080 -p 8443:8443 \
 -e TZ=Asia/Shanghai \
 -v ${NFS}/doku:/bitnami \
 bitnami/dokuwiki:latest
@@ -42,7 +42,6 @@ bitnami/dokuwiki:latest
 docker service create --replicas 1 \
 --name dokuwiki \
 --network staging \
--p 80:80 -p 443:443 \
 -e TZ=Asia/Shanghai \
 --mount type=bind,src=${NFS}/doku,dst=/bitnami \
 bitnami/dokuwiki:latest
@@ -50,7 +49,7 @@ bitnami/dokuwiki:latest
 #traefik参数
 --label traefik.enable=true \
 --label traefik.docker.network=staging \
---label traefik.http.services.wiki.loadbalancer.server.port=80 \
+--label traefik.http.services.wiki.loadbalancer.server.port=8080 \
 --label traefik.http.routers.wiki.rule="Host(\`wiki.${DOMAIN}\`)" \
 --label traefik.http.routers.wiki.entrypoints=http \
 --label traefik.http.routers.wiki-sec.tls=true \

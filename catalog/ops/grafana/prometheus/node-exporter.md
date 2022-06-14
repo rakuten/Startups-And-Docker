@@ -15,7 +15,7 @@
 ## 启动命令
 
 <!-- tabs:start -->
-{% tab title="Linux" %}
+#### **Linux**
 * 运行exporter容器
 
 ```bash
@@ -49,7 +49,7 @@ prom/node-exporter \
 * Grafana添加面板: 左边栏 + 号 &gt; Import &gt; 输入 10467 &gt; 点击Load按钮
 
 
-{% tab title="Windows" %}
+#### **Windows**
 * 下载软件 [https://github.com/prometheus-community/windows\_exporter/releases/latest](https://github.com/prometheus-community/windows_exporter/releases/latest) \(如:windows\_exporter-0.16.0-amd64.msi\)
 * 双击运行
 * 打开Windows入站防火墙端口9182

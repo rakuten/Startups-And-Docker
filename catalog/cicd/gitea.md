@@ -20,8 +20,10 @@
 ## 前置准备
 
 ```bash
-#创建数据保存目录
+# 创建数据保存目录
 mkdir ${NFS}/gitea
+# 创建ssh目录保存登录凭据
+mkdir -p ~/git/.ssh
 ```
 
 ## 启动命令
@@ -34,7 +36,7 @@ docker run -d \
 --restart unless-stopped \
 --network=backend \
 -v ${NFS}/gitea:/data \
--p 3000:3000 \
+-v /home/git/.ssh/:/data/git/.ssh \
 -p 8022:22 \
 gitea/gitea
 ```
@@ -47,6 +49,7 @@ docker service create --replicas 1 \
 --hostname gitea.mytrade.fun \
 --network staging \
 --mount type=bind,src=${NFS}/gitea,dst=/data \
+--mount type=bind,src=/home/git/.ssh/:/data/git/.ssh \
 --mount type=bind,src=/etc/timezone,dst=/etc/timezone:ro \
 --mount type=bind,src=/etc/localtime,dst=/etc/localtime:ro \
 -e DOMAIN="gitea.${DOMAIN}" \
@@ -77,7 +80,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:1.15.3
+    image: gitea/gitea
     container_name: gitea
     environment:
       - USER_UID=1000

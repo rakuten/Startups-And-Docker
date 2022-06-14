@@ -4,7 +4,8 @@
 
 ## 简介
 
-NPM仓库
+Verdaccio 是一个 Node.js创建的轻量级私有npm proxy registry
+它forked于sinopia@1.4.0并且100% 向后兼容，sinopia是最初的搭建私有npm的选择，不过已经好多年不维护了，而verdaccio则是从sinopia衍生出来并且一直在维护中的，所以现在看来，verdaccio是一个更好的选择。
 
 ![](../../images/verdaccio.png)
 
@@ -52,6 +53,12 @@ verdaccio/verdaccio
 ```
 
 <!-- tabs:end -->
+
+```yaml
+设置代理的命令：
+npm config set strict-ssl false    关闭npm的https；
+npm config set registry "http://verdaccio:4873/"     设置npm的获取地址
+```
 
 
 

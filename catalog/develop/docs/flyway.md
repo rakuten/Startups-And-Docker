@@ -6,7 +6,7 @@
 
 ## 简介
 
-开源的数据库移植及版本管理工具。它可以很方便的在命令行中使用，或者在Java应用程序中引入，用于管理我们的数据库版本，不需要复杂的配置。Migrations可以写成SQL脚本，也可以写在Java代码中
+开源的数据库移植及版本管理命令行工具。它可以很方便的在命令行中使用，或者在Java应用程序中引入，用于管理我们的数据库版本，不需要复杂的配置。Migrations可以写成SQL脚本，也可以写在Java代码中
 
 Flyway工作流程:
 1、项目启动，应用程序完成数据库连接池的建立后，Flyway自动运行。
@@ -28,17 +28,16 @@ SBT, Ant, Spring Boot, Grails, Play!, DropWizard, Grunt, Griffon, Ninja, ...
 
 | 端口 | 用途 |
 | :--- | :--- |
-| 53 | DNS |
-| 8080 | 管理页面 |
+| - | - |
 
 
 
 ## 前置准备
 
 ```bash
-mkdir ${NFS}/dnsmasq
+mkdir ${NFS}/flyway
+mkdir ${NFS}/flyway/sql
 ```
-
 
 
 ## 启动命令
@@ -49,24 +48,24 @@ mkdir ${NFS}/dnsmasq
 ```bash
 docker run -d \
 --restart unless-stopped \
---name elkarbackup \
+--name flyway \
 --network=backend \
 -e TZ=Asia/Shanghai \
 -v ${NFS}/flyway/sql:/flyway/sql \
-
-flyway/flyway migrate
+flyway/flyway command: -url=jdbc:mysql://db -schemas=myschema -user=root -password=P@ssw0rd -connectRetries=60 migrate
 
 ```
-
 
 
 #### **Swarm**
 
 ```bash
 docker service create --replicas 1 \
---name elkarbackup \
+--name flyway \
 --network staging \
 -e TZ=Asia/Shanghai \
+--mount type=bind,src=${NFS}/flyway/sql,dst=/flyway/sql \
+flyway/flyway command: -url=jdbc:mysql://db -schemas=myschema -user=root -password=P@ssw0rd -connectRetries=60  migrate
 ```
 
 <!-- tabs:end -->
@@ -75,6 +74,6 @@ docker service create --replicas 1 \
 
 ## 参考
 
-官网: 
-Github:
+官网:[https://flywaydb.org/](https://flywaydb.org/)
+Github:[https://github.com/flyway/flyway](https://github.com/flyway/flyway)
 

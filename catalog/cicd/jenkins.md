@@ -34,6 +34,11 @@ docker run -d \
 -e TZ=Asia/Shanghai \
 -p 8080:8080 \
 -p 50000:50000 \
+-u root \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v ${which docker}:/bin/docker \
+-v /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
+-v /var/lib/docker/tmp:/var/lib/docker/tmp \
 -v ${NFS}/jenkins:/var/jenkins_home \
 jenkins/jenkins:alpine
 ```

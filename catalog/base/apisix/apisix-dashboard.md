@@ -32,7 +32,7 @@ docker run -d \
 --name apisix-dashboard
 -v ${NFS}/apisix/dashboard.yaml:/usr/local/apisix-dashboard/conf/conf.yaml 
 -p 9000:9000 
-apache/apisix-dashboard:2.10.1-alpine
+apache/apisix-dashboard:2.13-alpine
 ```
 
 
@@ -44,7 +44,7 @@ docker service create --replicas 1 \
 -e TZ=Asia/Shanghai \
 -p 9000:9000 \
 --mount type=bind,src=${NFS}/apisix/dashboard.yaml,dst=/usr/local/apisix-dashboard/conf/conf.yaml \
-apache/apisix-dashboard:2.10.1-alpine
+apache/apisix-dashboard:2.13-alpine
 
 #traefik参数
 --label traefik.enable=true \

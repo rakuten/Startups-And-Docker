@@ -11,7 +11,7 @@
 
 | 端口 | 用途 |
 | :--- | :--- |
-| 5672 | 通讯端口 |
+| 8080 | 通讯端口 |
 | 15672 | 管理页面 |
 
 
@@ -36,14 +36,29 @@ docker run -d \
 -e RABBITMQ_DEFAULT_USER="guest" \
 -e RABBITMQ_DEFAULT_PASS="guest" \
 -v ${NFS}/rabbitmq:/var/lib/rabbitmq \
--p 5672:5672 \
+-p 8080:8080 \
 -p 15672:15672 \
-rabbitmq:management-alpine
+rabbitmq:3.8-management
 ```
 
 
 #### **Swarm**
-
+```bash
+docker service create --replicas 1 \
+--name rabbitmq \
+--network staging \
+-e TZ=Asia/Shanghai \
+-e RABBITMQ_VM_MEMORY_HIGH_WATERMARK="1024MiB" \
+-e RABBITMQ_DEFAULT_USER="guest" \
+-e RABBITMQ_DEFAULT_PASS="guest" \
+--mount type=bind,src=${NFS}/rabbitmq,dst=/var/lib/rabbitmq \
+--label traefik.enable=true \
+--label traefik.docker.network=staging \
+--label traefik.http.services.rabbitmq.loadbalancer.server.port=15672 \
+--label traefik.http.routers.rabbitmq.rule="Host(\`rabbitmq.${DOMAIN}\`)" \
+--label traefik.http.routers.rabbitmq.entrypoints=http \
+rabbitmq:3.8-management
+```
 
 <!-- tabs:end -->
 

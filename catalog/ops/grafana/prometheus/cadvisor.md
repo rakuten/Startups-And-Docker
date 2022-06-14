@@ -33,7 +33,7 @@ docker run -d \
 -v /var/lib/docker/:/var/lib/docker:ro \
 -v /dev/disk/:/dev/disk:ro \
 -p 18081:8080 \
-uhub.service.ucloud.cn/gcr_io/cadvisor:v0.40.0 \
+uhub.service.ucloud.cn/gcr_io/cadvisor:v0.44.0 \
 --docker_only=true \
 --disable_root_cgroup_stats=true \
 --storage_duration=1m0s \

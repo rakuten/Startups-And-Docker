@@ -129,4 +129,5 @@ services:
 DockerHub: [https://hub.docker.com/r/minio/minio](https://hub.docker.com/r/minio/minio)  
 中文帮助: [http://docs.minio.org.cn/docs/](http://docs.minio.org.cn/docs/)  
 参考手册: [https://docs.min.io/cn/minio-quickstart-guide.html](https://docs.min.io/cn/minio-quickstart-guide.html)
+监控面板: [how-to-monitor-minio-using-prometheus](http://docs.minio.org.cn/docs/master/how-to-monitor-minio-using-prometheus)
 
