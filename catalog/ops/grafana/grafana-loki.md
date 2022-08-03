@@ -73,7 +73,7 @@ docker run -d \
 --name loki \
 -v ${NFS}/loki/local-config.yaml:/etc/loki/local-config.yaml \
 -p 3100:3100 \
-grafana/loki:2.5.0 \
+grafana/loki:2.6.1 \
 --config.file=/etc/loki/local-config.yaml
 ```
 
@@ -93,7 +93,7 @@ docker service create --replicas 1 \
 --label traefik.enable=false \
 --log-driver=loki \
 --log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
-grafana/loki:2.5.0 \
+grafana/loki:2.6.1 \
 --config.file=/etc/loki/local-config.yaml
 ```
 

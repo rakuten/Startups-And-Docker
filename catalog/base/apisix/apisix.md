@@ -38,7 +38,7 @@ docker run -d \
 -v ${NFS}/apisix/config.yaml:/usr/local/apisix/conf/config.yaml 
 -p 9080:9080 \
 -p 9443:9443 \
-apache/apisix:2.14.1-alpine
+apache/apisix:2.15.0-alpine
 ```
 
 
@@ -52,7 +52,7 @@ docker service create --replicas 1 \
 --publish published=9443,target=9443,mode=host \
 --mount type=bind,src=${NFS}/apisix/config.yaml,dst=/usr/local/apisix/conf/config.yaml \
 --label traefik.enable=false \
-apache/apisix:2.14.1-alpine
+apache/apisix:2.15.0-alpine
 ```
 
 <!-- tabs:end -->

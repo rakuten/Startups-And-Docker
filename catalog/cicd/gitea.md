@@ -37,7 +37,13 @@ docker run -d \
 --network=backend \
 -v ${NFS}/gitea:/data \
 -v /home/git/.ssh/:/data/git/.ssh \
--p 8022:22 \
+-p 3000:3000 \
+-p 8022:8022 \
+-e DOMAIN="gitea.${DOMAIN}" \
+-e SSH_DOMAIN="gitea.${DOMAIN}" \
+-e SSH_PORT=8022 \
+-e ALLOWED_HOST_LIST="*" \
+-e SKIP_TLS_VERIFY=true \
 gitea/gitea
 ```
 
@@ -46,7 +52,7 @@ gitea/gitea
 ```bash
 docker service create --replicas 1 \
 --name gitea \
---hostname gitea.mytrade.fun \
+--hostname gitea.${DOMAIN} \
 --network staging \
 --mount type=bind,src=${NFS}/gitea,dst=/data \
 --mount type=bind,src=/home/git/.ssh/:/data/git/.ssh \
@@ -55,6 +61,8 @@ docker service create --replicas 1 \
 -e DOMAIN="gitea.${DOMAIN}" \
 -e SSH_DOMAIN="gitea.${DOMAIN}" \
 -e SSH_PORT=8022 \
+-e ALLOWED_HOST_LIST="*" \
+-e SKIP_TLS_VERIFY=true \
 gitea/gitea
 
 #traefik参数
@@ -67,6 +75,9 @@ gitea/gitea
 --label traefik.http.routers.gitea-sec.tls.certresolver=dnsResolver \
 --label traefik.http.routers.gitea-sec.rule="Host(\`gitea.${DOMAIN}\`)" \
 --label traefik.http.routers.gitea-sec.entrypoints=https \
+--label traefik.tcp.services.gitea.loadbalancer.server.port=8022 \
+--label traefik.tcp.routers.gitea.rule="Host(\`gitea.${DOMAIN}\`)" \
+--label traefik.tcp.routers.gitea.entrypoints=ssh \
 ```
 
 

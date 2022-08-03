@@ -33,7 +33,7 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/loki/promtail.yaml,dst=/etc/promtail/promtail.yaml \
 --mount type=bind,src=/var/log,dst=/var/log \
 --label traefik.enable=false \
-grafana/promtail
+grafana/promtail:2.6.1
 ```
 
 <!-- tabs:end -->

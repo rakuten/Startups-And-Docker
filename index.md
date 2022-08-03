@@ -51,6 +51,7 @@
 | 名称 | 用途 | 内存占用 | 端口映射 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
 | [Portainer](catalog/ops/portainer.md) | 网页版Docker管理 | 16M | 9000 | - |
+| [Casdoor](catalog/ops/casdoor.md) | 开源单点登录解决方案 | 12M | 8000 | - |
 | [Keycloak](catalog/ops/keycloak.md) | 身份和访问管理解决方案 |  | 8080 |  |
 | [Matomo](catalog/ops/matomo.md) |  |  | 80 | - |
 | [Elkarbackup](catalog/ops/elkarbackup.md) | 数据备份 |  |  | 8000 |

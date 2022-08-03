@@ -65,6 +65,7 @@
         * [Promtail](catalog/ops/grafana/grafana-promtail.md)
       * [Grafana/Tempo](catalog/ops/grafana/grafana-tempo.md)
     * [Portainer](catalog/ops/portainer.md)
+    * [Casdoor](catalog/ops/casdoor.md)
     * [Matomo](catalog/ops/matomo.md)
     * [Elkarbackup](catalog/ops/elkarbackup.md)
     * [Syncthing](catalog/ops/syncthing.md)
