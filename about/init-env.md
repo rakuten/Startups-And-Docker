@@ -19,7 +19,9 @@ NFS=/nfs
 DOMAIN=mytrade.fun
 
 #修改系统参数
+#debian交互变量
 echo 'NFS=/nfs\\nDOMAIN=mytrade.fun'>>/etc/profile
+source /etc/profile
 ```
 
 ## 创建Bridge网络

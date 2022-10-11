@@ -12,6 +12,7 @@
 | [Wordpress](catalog/base/wordpress.md) | 开源博客平台 |  | 80 | - |
 | [Flarum](catalog/base/flarum.md) | 开源论坛 | 65M | 8000 |  |
 | [Synapse](catalog/base/synapse/synapse.md) | 聊天室服务器 | 87M | 8008,8448 |  |
+| [WikiJS](catalog/base/wikijs.md) | Wiki |  | 3000 | - |
 | [Dokuwiki](catalog/base/dokuwiki.md) | Wiki |  | 80,443 | - |
 | [Outline](catalog/base/outline.md) | Gitbook开源替代品 |  | 3000 |  |
 | [Ocserv](catalog/base/ocserv.md) | OpenConnect VPN服务端 | 3M | 443 | 兼容Cisco Anyconnect |

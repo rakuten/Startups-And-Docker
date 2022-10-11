@@ -14,6 +14,31 @@ sudo passwd 密码
 userdel 用户名
 ```
 
+* 挂载新硬盘
+
+```bash
+# 查看挂载情况 
+df -h
+
+# 查看硬盘情况
+fdisk -l
+
+# 格式化硬盘
+mkfs.ext4 /dev/vdb
+
+# 创建挂载目录
+mkdir /mnt/data
+
+# 挂载硬盘到目录
+mount /dev/vdb /mnt/data
+
+# 设置重启后自动挂载
+echo '/dev/vdb /mnt/data ext4 defaults 0 0' >> /etc/fstab
+
+# 查看自动挂载是否生效
+cat /etc/fstab
+```
+
 * 进程管理
 
 ```bash

@@ -15,3 +15,14 @@ docker swarm leave --force
 
 ```
 
+
+
+### 将服务运行在指定服务器
+
+```bash
+# 先在指定node上创建标签
+docker node update --label-add func=minio $HOSTNAME
+# 然后在指定node集群上运行服务
+docker service create --name my_nginx --constraint 'node.labels.func == nginx' nginx
+```
+

@@ -20,11 +20,15 @@
 ```bash
 #创建数据保存目录
 mkdir ${NFS}/redis
+
+#修改内存分配策略，防止后台数据保存失败
+sysctl vm.overcommit_memory=1
 ```
 
 ## 启动命令
 
 <!-- tabs:start -->
+
 #### **Docker**
 ```bash
 docker run -d \
@@ -34,7 +38,7 @@ docker run -d \
 --restart unless-stopped \
 -v ${NFS}/redis:/data \
 -p 6379:6379 \
-redis:alpine --requirepass Ttt123456 --appendonly yes
+redis:alpine --requirepass ${REDIS_PWD} --appendonly yes
 ```
 
 
@@ -45,8 +49,9 @@ docker service create --replicas 1 \
 --network staging \
 -e TZ=Asia/Shanghai \
 -p 6379:6379 \
+--mount type=bind,src=${NFS}/redis,dst=/data \
 --label traefik.enable=false \
-redis:alpine --requirepass Ttt123456
+redis:alpine --requirepass ${REDIS_PWD} --appendonly yes
 ```
 
 <!-- tabs:end -->
