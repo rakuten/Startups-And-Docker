@@ -44,6 +44,7 @@
       * [Redis](catalog/develop/cache/redis.md)
   * [CI/CD]()
     * [Gitea](catalog/cicd/gitea.md)
+    * [Gerrit](catalog/cicd/gerrit.md)
     * [Phabricator](catalog/cicd/phabricator.md)
     * [Drone](catalog/cicd/drone/drone.md)
       * [Drone-Agent](catalog/cicd/drone/drone-agent.md)

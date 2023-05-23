@@ -40,6 +40,7 @@
 | 名称 | 用途 | 内存占用 | 端口映射 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
 | [Gitea](catalog/cicd/gitea.md) | 版本控制 | 115M | 22,3000 | Gogs分叉版本，支持OAuth2和S3 |
+| [Gerrit](catalog/cicd/gerrit.md) | 代码审核 | 840M | 8080,29418 |   |
 | [Phabricator](catalog/cicd/phabricator.md) | 代码审核 |  | 8080,8443 | 界面比Gerrit更人性化 |
 | [Drone](catalog/cicd/drone/drone.md) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
 | [Locust](catalog/cicd/locust.md) | 压力测试 | - | - | - |

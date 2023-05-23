@@ -33,6 +33,7 @@ docker run -d \
 --name matomo \
 --restart unless-stopped \
 -e TZ=Asia/Shanghai \
+-e PHP_TZ=Asia/Shanghai \
 -p 80:80 \
 -e MATOMO_DATABASE_ADAPTER=mysql \
 -e MATOMO_DATABASE_HOST=mysql \
@@ -50,6 +51,7 @@ docker service create --replicas 1 \
 --name matomo \
 --network staging \
 -e TZ=Asia/Shanghai \
+-e PHP_TZ=Asia/Shanghai \
 -e MATOMO_DATABASE_ADAPTER=mysql \
 -e MATOMO_DATABASE_HOST=mysql \
 -e MATOMO_DATABASE_DBNAME=matomo \

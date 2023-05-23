@@ -25,19 +25,20 @@ chmod 777 -R ${NFS}/ocserv
 #生成配置文件
 docker run -d \
 --name ocserv \
+-e SRV_CN=sec.${DOMAIN} \
+-e SRV_ORG=${DOMAIN} \
 -e VPN_DOMAIN=sec.${DOMAIN} \
 -e VPN_NETWORK=10.8.8.0 \
 -e VPN_NETMASK=255.255.255.0 \
--e LAN_NETWORK=172.16.0.0 \
--e LAN_NETMASK=255.255.0.0 \
+-e LAN_NETWORK=172.16.120.0 \
+-e LAN_NETMASK=255.255.255.0 \
 -e VPN_USERNAME=admin \
 -e VPN_PASSWORD=password \
 --cap-add NET_ADMIN \
--v ${NFS}/ocserv/certs:/etc/ocserv/certs \
-icodex/docker-ocserv
+stilleshan/ocserv
 
 #备份配置文件
-docker cp ocserv:/etc/ocserv/ocserv.conf $NFS/ocserv/
+docker cp ocserv2:/etc/ocserv/ocserv.conf $NFS/ocserv/ocserv.conf
 docker cp ocserv:/etc/ocserv/ocpasswd $NFS/ocserv/
 
 #删除实例
@@ -52,35 +53,55 @@ docker rm -f ocserv
 docker run -d \
 --name ocserv \
 --restart unless-stopped \
+--privileged \
+--sysctl=net.ipv4.ip_forward=1 \
+-e SRV_CN=sec.${DOMAIN} \
+-e SRV_ORG=${DOMAIN} \
 -e VPN_DOMAIN=sec.${DOMAIN} \
+-e VPN_PORT=443 \
+-e VPN_NETWORK=10.8.8.0 \
+-e VPN_NETMASK=255.255.255.0 \
+-e LAN_NETWORK=172.16.120.0 \
+-e LAN_NETMASK=255.255.255.0 \
+-e VPN_USERNAME=admin \
+-e VPN_PASSWORD=password \
 -p 9872:443 \
--v ${NFS}/ocserv/certs:/etc/ocserv/certs \
--v ${NFS}/ocserv/ocserv.conf:/etc/ocserv/ocserv.conf \
--v ${NFS}/ocserv/ocpasswd:/etc/ocserv/ocpasswd \
-icodex/docker-ocserv
+-p 9872:443/udp \
+-v ${NFS}/ocserv:/etc/ocserv \
+stilleshan/ocserv
 ```
 
-
 #### **Swarm**
+
 ```bash
 docker service create --replicas 1 \
 --name ocserv \
 --network staging \
 -e TZ=Asia/Shanghai \
 -e VPN_DOMAIN=sec.${DOMAIN} \
+-e VPN_PORT=443 \
+-e VPN_NETWORK=10.8.8.0 \
+-e VPN_NETMASK=255.255.255.0 \
+-e LAN_NETWORK=172.16.120.0 \
+-e LAN_NETMASK=255.255.255.0 \
+-e VPN_USERNAME=admin \
+-e VPN_PASSWORD=password \
 -p 9872:443 \
+-p 9872:443/udp \
 --cap-add NET_ADMIN \
+--sysctl=net.ipv4.ip_forward=1 \
+--security-opt=no-new-privileges \
 --mount type=bind,src=${NFS}/ocserv/certs,dst=/etc/ocserv/certs \
 --mount type=bind,src=${NFS}/ocserv/ocserv.conf,dst=/etc/ocserv/ocserv.conf \
 --mount type=bind,src=${NFS}/ocserv/ocpasswd,dst=/etc/ocserv/ocpasswd \
-icodex/docker-ocserv
+stilleshan/ocserv
 ```
 
 
 #### **Compose**
 ```
 ocserv:
-  image: icodex/docker-ocserv
+  image: stilleshan/ocserv
   ports:
     - "443:443/tcp"
     - "443:443/udp"
@@ -93,8 +114,8 @@ ocserv:
     - VPN_PORT=443
     - VPN_NETWORK=10.8.8.0
     - VPN_NETMASK=255.255.255.0
-    - LAN_NETWORK=172.16.0.0
-    - LAN_NETMASK=255.255.0.0
+    - LAN_NETWORK=172.16.120.0
+    - LAN_NETMASK=255.255.255.0
     - VPN_USERNAME=admin
     - VPN_PASSWORD=password
   cap_add:
@@ -104,7 +125,25 @@ ocserv:
 
 <!-- tabs:end -->
 
+### 备用命令
 
+```bash
+# 创建一个新用户
+docker exec -ti ocserv ocpasswd -c /etc/ocserv/ocpasswd [用户名]
+
+# 删除test用户
+docker exec -ti ocserv ocpasswd -c /etc/ocserv/ocpasswd -d [用户名]
+
+# 添加用户到组:
+docker exec -ti ocserv ocpasswd -c /etc/ocserv/ocpasswd -g [组名] [用户名]
+
+# 锁定用户:
+docker exec -ti ocserv ocpasswd -c /etc/ocserv/ocpasswd -l [用户名]
+
+# 解锁用户:
+docker exec -ti ocserv ocpasswd -c /etc/ocserv/ocpasswd -u [用户名]
+
+```
 
 ## 参考
 
