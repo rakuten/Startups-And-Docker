@@ -64,10 +64,25 @@ systemctl restart networking
 * 共享管理
 
 ```bash
+#安装cifs模块
+apt-get i cifs-utils
+
+#查看cifs模块信息
+modinfo cifs
+
 #挂载Windows目录
-sudo mount -t cifs -o username=guest,password="",dir_mode=0777,file_mode=0777,iocharset=utf8,vers=3.0,sec=ntlm,noexec,auto,rw //192.168.0.54/DataDisk /mnt/share2
+sudo mount -t cifs -o username=guest,password="",dir_mode=0777,file_mode=0777,iocharset=utf8,vers=3.0,sec=ntlm,noexec,auto,rw //192.168.0.54/DataDisk /mnt/share
 
 #vi /etc/fstab
-//192.168.0.54/DataDisk /mnt/share2 cifs username=guest,password=,dir_mode=0777,file_mode=0777,iocharset=utf8,vers=3.0,sec=ntlm,noexec,auto,rw,users 0 0
+//192.168.0.54/DataDisk /mnt/share cifs username=guest,password=,dir_mode=0777,file_mode=0777,iocharset=utf8,vers=3.0,sec=ntlm,noexec,auto,rw,users 0 0
 ```
 
+- 修改文件
+
+```
+# 将两个文件的差异输出到指定文件
+diff -u lib/engine.js /tmp/engine.js > engine.patch
+
+# 将差异合并回源文件
+patch -p3 < engine.patch lib/engine.js
+```

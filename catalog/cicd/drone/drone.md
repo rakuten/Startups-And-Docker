@@ -8,6 +8,8 @@
 
 ![](../../../images/screenshot_build_success.png)
 
+Drone是一款轻量级的开源的CI/CD工具，我们可以用来搭配Gitea使用，虽然新版的Gitea已有Action功能，但并不支持Windows节点，所以依然比较推荐使用Drone
+
 ## EXPOSE
 
 | 端口 | 用途 |
@@ -42,7 +44,7 @@ RUN sed -i 's/https:\/\/dl-cdn.alpinelinux.org/http:\/\/mirrors.tuna.tsinghua.ed
     echo "Asia/Shanghai" > /etc/timezone && \
     apk add build-base
 
-ENV DRONE_VERSION 2.17.0
+ENV DRONE_VERSION 2.20.0
 
 WORKDIR /src
 
@@ -51,7 +53,7 @@ RUN wget https://download.fastgit.org/drone/drone/archive/refs/tags/v${DRONE_VER
     tar zxvf v${DRONE_VERSION}.tar.gz && \
     rm v${DRONE_VERSION}.tar.gz
 # OR with offline tarball
-# ADD drone-2.17.0.tar.gz /src/
+# ADD drone-2.20.0.tar.gz /src/
 
 WORKDIR /src/drone-${DRONE_VERSION}
 
@@ -96,14 +98,14 @@ ENV DRONE_DATADOG_ENABLED=true
 ENV DRONE_DATADOG_ENDPOINT=https://stats.drone.ci/api/v1/series
 
 COPY --from=Certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=Builder /src/drone-2.17.0/drone-server /bin/drone-server
+COPY --from=Builder /src/drone-2.20.0/drone-server /bin/drone-server
 ENTRYPOINT ["/bin/drone-server"]
 ```
 
 - 生成镜像
 
 ```bash
-docker build --rm -f drone.yaml -t drone:2.17.0 .
+docker build --rm -f drone.yaml -t drone:2.20.0 .
 ```
 
 
@@ -129,7 +131,7 @@ docker run -d \
 -e DRONE_RPC_SECRET=MWckgvhjqg4E3eQ0ptg2X4iNC6oQiyU4LLvO4eXFFuHtrTkIy2vwcAc3erB5f9reM \
 -p 80:80 \
 -p 443:443 \
-drone:2.17.0
+drone:2.20.0
 ```
 
 
@@ -153,7 +155,7 @@ docker service create --replicas 1 \
 -e DRONE_RPC_SECRET=MWckgvhjqg4E3eQ0ptg2X4iNC6oQiyU4LLvO4eXFFuHtrTkIy2vwcAc3erB5f9reM \
 --mount type=bind,src=${NFS}/drone,dst=/data \
 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-drone:2.17.0
+drone:2.20.0
 
 #traefik参数
 --label traefik.enable=true \
@@ -173,3 +175,4 @@ drone:2.17.0
 
 ##  参考
 
+官方文档: https://docs.drone.io/

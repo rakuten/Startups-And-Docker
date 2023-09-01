@@ -25,6 +25,8 @@
 mkdir -p ${NFS}/nginx/{data,conf}
 #创建配置文件目录
 mkdir ${NFS}/nginx/conf/conf.d
+#修改目录权限
+chmod 755 ${NFS}/nginx/data
 
 #复制配置文件
 docker run -d --name tmp-nginx nginx:1.21.3-alpine

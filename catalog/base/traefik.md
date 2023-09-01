@@ -154,6 +154,11 @@ docker service create --replicas 1 \
 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
 --mount type=bind,source=${NFS}/traefik,target=/etc/traefik \
 --mount type=bind,source=${NFS}/traefik/config,target=/etc/traefik/config,readonly \
+--label traefik.http.routers.dashboard.entrypoints=https \
+--label traefik.http.routers.dashboard.tls=true \
+--label "traefik.http.routers.dashboard.rule=Host(\`www.${DOMAIN}\`) && (PathPrefix(\`/api\`) || PathPrefix(\`/dashboard\`))" \
+--label traefik.http.services.dashboard.loadbalancer.server.port=8080 \
+--label "traefik.http.routers.dashboard.service=api@internal" \
 --log-driver=loki \
 --log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
 traefik

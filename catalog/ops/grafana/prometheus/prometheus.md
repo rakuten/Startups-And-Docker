@@ -98,4 +98,6 @@ prom/prometheus
 
 ## 参考
 
+官网: https://prometheus.io/
+Github: https://github.com/prometheus/prometheus
 报警规则: https://awesome-prometheus-alerts.grep.to/

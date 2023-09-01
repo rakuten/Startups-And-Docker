@@ -7,18 +7,25 @@
 | [APISix](catalog/base/apisix/apisix.md) | API网关 | 103M | 9080,9443 | - |
 | [Nginx](catalog/base/nginx.md) | Web服务器 | 3M | 80,443 | - |
 | [NextCloud](catalog/base/nexcloud.md) | OAuth供应器,WebDAV,文件共享 | 126M | 80 | 可将文件存储至Minio |
-| [Cloudreve](catalog/base/cloudreve.md) | 开源网盘 | 33M | 5212 | 可将文件存储至公有云 |
 | [Minio](catalog/base/minio.md) | 对象存储 | 165M | 9000 | 兼容S3协议 |
 | [Wordpress](catalog/base/wordpress.md) | 开源博客平台 |  | 80 | - |
-| [Flarum](catalog/base/flarum.md) | 开源论坛 | 65M | 8000 |  |
-| [Synapse](catalog/base/synapse/synapse.md) | 聊天室服务器 | 87M | 8008,8448 |  |
-| [WikiJS](catalog/base/wikijs.md) | Wiki |  | 3000 | - |
-| [Dokuwiki](catalog/base/dokuwiki.md) | Wiki |  | 80,443 | - |
-| [Outline](catalog/base/outline.md) | Gitbook开源替代品 |  | 3000 |  |
+| [Flarum](catalog/base/flarum.md) | 开源论坛 | 65M | 8000 | - |
+| [Synapse](catalog/base/synapse/synapse.md) | 聊天室服务器 | 87M | 8008,8448 | - |
 | [Ocserv](catalog/base/ocserv.md) | OpenConnect VPN服务端 | 3M | 443 | 兼容Cisco Anyconnect |
-| [ZeroTier](catalog/base/zerotier.md) | 点对点VPN |  | 9993 |  |
+| [ZeroTier](catalog/base/zerotier.md) | 点对点VPN |  | 9993 | - |
 | [Bitwarden](catalog/base/bitwarden.md) | 开源的密码管理服务 | 8.6M | 80,3012 | 供客户端程序使用 |
-| PhotoPrism | 照片分享平台 |  |  |  |
+| PhotoPrism | 照片分享平台 | - | - | - |
+
+
+### 办公自动化
+
+| 名称 | 用途 | 内存占用 |   端口映射 | 备注 |
+| :---: | :---: | :---: | :---: | :---: |
+| [Cloudreve](catalog/oa/cloudreve.md) | 开源网盘 | 33M | 5212 | 可将文件存储至公有云 |
+| [Dokuwiki](catalog/oa/dokuwiki.md) | Wiki |  | 80,443 | - |
+| [Outline](catalog/oa/outline.md) | Gitbook开源替代品 |  | 3000 | - |
+| [WikiJS](catalog/oa/wikijs.md) | Wiki |  | 3000 | - |
+
 
 ### 开发应用
 
@@ -27,10 +34,10 @@
 | [MariaDB](catalog/develop/database/mariadb.md) | MySQL替代品 |  | 3306 | - |
 | [MySQL](catalog/develop/database/mysql/mysql.md) | 数据库 | 180M | 3306 | - |
 | [Postgres](catalog/develop/database/postgres/postgres.md) | 数据库 | 7M | 5432 | - |
-| [MongoDB](catalog/develop/database/mongodb/mongodb.md) | 数据库 | 65M | 27017 |  |
-| [MemCached](catalog/develop/cache/memcached.md) | 键值对\(Key-Value\)存储数据库 |  | 11211 |  |
+| [MongoDB](catalog/develop/database/mongodb/mongodb.md) | 数据库 | 65M | 27017 | - |
+| [MemCached](catalog/develop/cache/memcached.md) | 键值对\(Key-Value\)存储数据库 |  | 11211 | - |
 | [Redis](catalog/develop/cache/redis.md) | 键值对\(Key-Value\)存储数据库 | 4.5M | 6379 | - |
-| [RabbitMQ](catalog/develop/cache/rabbitmq.md) | 开源消息队列 | 83M | 5672,15672 |  |
+| [RabbitMQ](catalog/develop/cache/rabbitmq.md) | 开源消息队列 | 83M | 5672,15672 | - |
 | [Adminer](catalog/develop/database/adminer.md) | 多类型数据库管理 |  | 8080 | 类似PhpMyAdmin |
 | [YApi](catalog/develop/docs/yapi.md) | 接口管理文档 |  | 3000 | - |
 | [Flyway](catalog/develop/docs/flyway.md) | 数据库脚本管理 |  |  | - |
@@ -40,8 +47,8 @@
 | 名称 | 用途 | 内存占用 | 端口映射 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
 | [Gitea](catalog/cicd/gitea.md) | 版本控制 | 115M | 22,3000 | Gogs分叉版本，支持OAuth2和S3 |
-| [Gerrit](catalog/cicd/gerrit.md) | 代码审核 | 840M | 8080,29418 |   |
-| [Phabricator](catalog/cicd/phabricator.md) | 代码审核 |  | 8080,8443 | 界面比Gerrit更人性化 |
+| [Gerrit](catalog/cicd/gerrit.md) | 代码审核 | 840M | 8080,29418 | - |
+| [Phabricator](catalog/cicd/phabricator.md) | 代码审核 | - | 8080,8443 | 界面比Gerrit更人性化 |
 | [Drone](catalog/cicd/drone/drone.md) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
 | [Locust](catalog/cicd/locust.md) | 压力测试 | - | - | - |
 | [Jenkins](catalog/cicd/jenkins.md) | 开源持续集成工具 | 1.05G | 8080,50000 | 适合发布客户端程序 |
@@ -54,13 +61,13 @@
 | :---: | :---: | :---: | :---: | :---: |
 | [Portainer](catalog/ops/portainer.md) | 网页版Docker管理 | 16M | 9000 | - |
 | [Casdoor](catalog/ops/casdoor.md) | 开源单点登录解决方案 | 12M | 8000 | - |
-| [Keycloak](catalog/ops/keycloak.md) | 身份和访问管理解决方案 |  | 8080 |  |
+| [Keycloak](catalog/ops/keycloak.md) | 身份和访问管理解决方案 |  | 8080 | - |
 | [Matomo](catalog/ops/matomo.md) |  |  | 80 | - |
 | [Elkarbackup](catalog/ops/elkarbackup.md) | 数据备份 |  |  | 8000 |
 | [Syncthing](catalog/ops/syncthing.md) | P2P数据同步 |  |  | - |
 | Alerta | 报警信息整合 |  |  | - |
 | [Dnsmasq](catalog/ops/dnsmasq.md) | DNS解析 | 9.45M | 53,8080 | - |
-| [JumpServer](catalog/ops/jumpserver.md) | 跳板机 | 1220M | 80,2222 |  |
+| [JumpServer](catalog/ops/jumpserver.md) | 跳板机 | 1220M | 80,2222 | - |
 | [Zabbix](catalog/ops/zabbix/zabbix-server.md) | 企业级开源监控方案 | 37M | 162,10051 | - |
 | [Etcd](catalog/ops/etcd.md) | Key/Value 存储系统 | 75M | 2379,2380 | 用于分享配置和服务发现 |
 | [Grafana](catalog/ops/grafana/grafana.md) | 数据可视化工具 | 13M | 3000 | - |

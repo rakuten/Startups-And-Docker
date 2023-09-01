@@ -21,7 +21,7 @@ Docker仓库
 ```bash
 #创建数据保存目录
 mkdir ${NFS}/registry
-chmod -R 777 $NFS/registry
+chmod -R 766 $NFS/registry
 ```
 
 ## 启动命令
@@ -38,8 +38,20 @@ docker run -d \
 registry
 ```
 
-
 #### **Swarm**
+
+```bash
+docker service create --replicas 1 \
+--name registry \
+--network staging \
+-p 5000:5000 \
+-e TZ=Asia/Shanghai \
+--mount type=bind,src=$NFS/registry,dst=/var/lib/registry \
+--label traefik.enable=false \
+registry
+```
+
+
 
 
 <!-- tabs:end -->

@@ -50,7 +50,6 @@ docker service create --replicas 1 \
 --name tempo \
 --network staging \
 -e TZ=Asia/Shanghai \
--p 16686:16686 \
 -p 14268:14268 \
 --mount type=bind,src=${NFS}/tempo/tempo-local.yaml,dst=/etc/tempo.yaml \
 --mount type=bind,src=/tmp/tempo,dst=/tmp/tempo \
@@ -63,7 +62,7 @@ grafana/tempo \
 
 #Traefik添加追踪变量(需重启)
 --tracing.jaeger=true
---tracing.jaeger.propagation=jaeger
+--tracing.jaeger. gen128Bit=true
 --tracing.jaeger.collector.endpoint=http://tempo.${DOMAIN}:14268/api/traces?format=jaeger.thrift
 
 ```

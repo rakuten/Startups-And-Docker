@@ -37,5 +37,13 @@ docker system prune
 
 #这次不仅会删除数据卷，而且连确认的过程都没有了！注意，使用 --all 参数后会删除所有未被引用的镜像而不仅仅是 dangling 镜像
 docker system prune --all --force --volumns 
+
+# 开启Proxy
+/etc/systemd/system/docker.service.d/http-proxy.conf
+Environment="HTTP_PROXY=http://ip:port" "NO_PROXY=localhost,*.ibm.com,192.168.0.0/16,127.0.0.1,10.0.0.0/8"
+/etc/systemd/system/docker.service.d/https-proxy.conf
+Environment="HTTPS_PROXY=https://ip:port" "NO_PROXY=localhost,*.ibm.com,192.168.0.0/16,127.0.0.1,10.0.0.0/8"
+ 
+systemctl show --property=Environment docker
 ```
 

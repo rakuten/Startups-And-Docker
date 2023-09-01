@@ -11,7 +11,7 @@
 | 端口 | 用途 |
 | :--- | :--- |
 | 8080 | 管理页面 |
-| 50000 | Agent |
+| 50000 | Agent端口 |
 
 
 
@@ -52,6 +52,7 @@ docker service create --replicas 1 \
 --name jenkins \
 --network staging \
 -e TZ=Asia/Shanghai \
+-p 50000:50000 \
 --mount type=bind,src=/etc/localtime,dst=/etc/localtime \
 --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 --mount type=bind,src=${which docker},dst=/bin/docker \
