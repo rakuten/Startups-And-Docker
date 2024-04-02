@@ -6,6 +6,8 @@
 
 
 
+set-executionpolicy remotesigned
+
 ## EXPOSE
 
 无

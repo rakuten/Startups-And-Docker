@@ -64,6 +64,9 @@ docker run -d \
 --restart unless-stopped \
 --name sonarqube \
 --network=backend \
+-e LANG="zh_CN.UTF-8" \
+-e LANGUAGE='zh_CN:zh' \
+-e LC_ALL='zh_CN.UTF-8' \
 -e TZ=Asia/Shanghai \
 -p 9000:9000 \
 -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonarqube \
@@ -72,7 +75,7 @@ docker run -d \
 -v ${NFS}/sonar/data:/opt/sonarqube/data \
 -v ${NFS}/sonar/logs:/opt/sonarqube/logs \
 -v ${NFS}/sonar/extensions:/opt/sonarqube/extensions \
-sonarqube:9.5-community
+sonarqube:10.4-community
 ```
 
 
@@ -83,6 +86,9 @@ sonarqube:9.5-community
 docker service create --replicas 1 \
 --name sonarqube \
 --network staging \
+-e LANG="zh_CN.UTF-8" \
+-e LANGUAGE='zh_CN:zh' \
+-e LC_ALL='zh_CN.UTF-8' \
 -e TZ=Asia/Shanghai \
 -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonarqube \
 -e SONAR_JDBC_USERNAME=sonarqube \
@@ -90,7 +96,7 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/sonar/data,dst=/opt/sonarqube/data \
 --mount type=bind,src=${NFS}/sonar/logs,dst=/opt/sonarqube/logs \
 --mount type=bind,src=${NFS}/sonar/extensions,dst=/opt/sonarqube/extensions \
-sonarqube:9.5-community
+sonarqube:10.4-community
 
 #traefik参数
 --label traefik.enable=true \

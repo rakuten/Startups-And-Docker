@@ -9,6 +9,11 @@
 sudo useradd -m 用户名 -g 组名 -d /home/用户名 -s /bin/rbash
 sudo passwd 密码
 
+#查看uid
+id 用户名
+
+#修改用户home目录
+usermod -d /usr/newfolder -u {uid}
 
 #删除帐号
 userdel 用户名

@@ -26,3 +26,7 @@ docker node update --label-add func=minio $HOSTNAME
 docker service create --name my_nginx --constraint 'node.labels.func == nginx' nginx
 ```
 
+### 将服务运行在所有节点
+```bash
+docker service create --name my_nginx --mode global nginx
+```

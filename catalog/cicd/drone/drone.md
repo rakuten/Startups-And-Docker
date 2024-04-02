@@ -44,21 +44,22 @@ RUN sed -i 's/https:\/\/dl-cdn.alpinelinux.org/http:\/\/mirrors.tuna.tsinghua.ed
     echo "Asia/Shanghai" > /etc/timezone && \
     apk add build-base
 
-ENV DRONE_VERSION 2.20.0
+ENV DRONE_VERSION 2.22.0
 
 WORKDIR /src
 
 # Build with online code
-RUN wget https://download.fastgit.org/drone/drone/archive/refs/tags/v${DRONE_VERSION}.tar.gz -O v${DRONE_VERSION}.tar.gz && \
+# RUN wget https://download.fastgit.org/drone/drone/archive/refs/tags/v${DRONE_VERSION}.tar.gz -O v${DRONE_VERSION}.tar.gz && \
+RUN wget https://github.com/harness/gitness/archive/refs/tags/v${DRONE_VERSION}.tar.gz -O v${DRONE_VERSION}.tar.gz && \
     tar zxvf v${DRONE_VERSION}.tar.gz && \
     rm v${DRONE_VERSION}.tar.gz
 # OR with offline tarball
-# ADD drone-2.20.0.tar.gz /src/
+# ADD drone-2.22.0.tar.gz /src/
 
-WORKDIR /src/drone-${DRONE_VERSION}
+WORKDIR /src/gitness-${DRONE_VERSION}
 
 # OR with master branches
-#RUN wget -L https://github.com/drone/drone/archive/refs/heads/master.tar.gz -o master.tar.gz && \
+#RUN wget -L https://github.com/harness/gitness/archive/refs/heads/master.tar.gz -o master.tar.gz && \
 #    tar zxvf master.tar.gz && \
 #    rm master.tar.gz
 #WORKDIR /src/drone-master
@@ -66,11 +67,11 @@ WORKDIR /src/drone-${DRONE_VERSION}
 ENV CGO_CFLAGS="-g -O2 -Wno-return-local-addr"
 
 RUN go env -w GO111MODULE=on && \
-    go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct && \
+    #go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct && \
     #go env -w GOPROXY=https://goproxy.cn/,direct && \
     go mod download
 
-RUN go build -ldflags "-extldflags \"-static\"" -tags="nolimit" github.com/drone/drone/cmd/drone-server
+RUN go build -ldflags "-extldflags \"-static\"" -tags="nolimit" github.com/harness/gitness/cmd/drone-server
 
 
 
@@ -98,14 +99,14 @@ ENV DRONE_DATADOG_ENABLED=true
 ENV DRONE_DATADOG_ENDPOINT=https://stats.drone.ci/api/v1/series
 
 COPY --from=Certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=Builder /src/drone-2.20.0/drone-server /bin/drone-server
+COPY --from=Builder /src/gitness-2.22.0/drone-server /bin/drone-server
 ENTRYPOINT ["/bin/drone-server"]
 ```
 
 - 生成镜像
 
 ```bash
-docker build --rm -f drone.yaml -t drone:2.20.0 .
+docker build --rm -f drone.yaml -t drone:2.22.0 .
 ```
 
 

@@ -52,7 +52,7 @@
 | [Drone](catalog/cicd/drone/drone.md) | 开源持续集成工具 | 21M | 80,443 | 适合发布服务端程序 |
 | [Locust](catalog/cicd/locust.md) | 压力测试 | - | - | - |
 | [Jenkins](catalog/cicd/jenkins.md) | 开源持续集成工具 | 1.05G | 8080,50000 | 适合发布客户端程序 |
-| [SonarQube](catalog/cicd/sonarqube.md) | 代码质量工具 | 1.36G | 9000 | - |
+| [SonarQube](catalog/cicd/sonarqube.md) | 代码质量工具 | 2.92G | 9000 | - |
 
 
 ### 运维环境
