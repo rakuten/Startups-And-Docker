@@ -29,7 +29,7 @@ mkdir ${NFS}/nginx/conf/conf.d
 chmod 755 ${NFS}/nginx/data
 
 #复制配置文件
-docker run -d --name tmp-nginx nginx:1.21.3-alpine
+docker run -d --name tmp-nginx nginx:1.26.0-alpine
 docker cp tmp-nginx:/etc/nginx/nginx.conf ${NFS}/nginx/conf/
 docker cp tmp-nginx:/etc/nginx/conf.d ${NFS}/nginx/conf
 docker rm -f tmp-nginx
@@ -57,7 +57,7 @@ gzip_vary on;
 * 加装OpenTraceing插件\(可选\)
 
 ```bash
-wget -O ${NFS}/nginx/ngx_http_module.so.tgz https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.29.0/linux-amd64-nginx-1.23.4-ngx_http_module.so.tgz
+wget -O ${NFS}/nginx/ngx_http_module.so.tgz https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.35.1/linux-amd64-nginx-1.26.0-ngx_http_module.so.tgz
 tar zxvf ngx_http_module.so.tgz
 rm -rf ngx_http_module.so.tgz
 ```
@@ -79,7 +79,7 @@ docker run -d \
 -v ${NFS}/nginx/data:/usr/share/nginx/html \
 -v ${NFS}/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro \
 -v ${NFS}/nginx/conf/conf.d:/etc/nginx/conf.d:ro \
-nginx:1.23.4-alpine
+opentracing/nginx-opentracing:nginx-1.26.0-alpine
 ```
 
 
@@ -97,7 +97,7 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/nginx/conf/conf.d,dst=/etc/nginx/conf.d,readonly \
 --log-driver=loki \
 --log-opt loki-url="http://loki.${DOMAIN}:3100/loki/api/v1/push" \
-nginx:1.23.4-alpine
+opentracing/nginx-opentracing:nginx-1.26.0-alpine
 
 #traefik参数(同时需去除--publish参数)
 --label traefik.enable=true \

@@ -47,3 +47,57 @@ Environment="HTTPS_PROXY=https://ip:port" "NO_PROXY=localhost,*.ibm.com,192.168.
 systemctl show --property=Environment docker
 ```
 
+
+
+### 修改Docker默认IP
+
+- 修改/etc/docker/daemon.json 
+
+```json
+"default-address-pools":[
+         {"base":"192.55.2.0/16","size":24},
+         {"base":"192.55.3.0/16","size":24},
+         {"base":"192.55.4.0/16","size":24},
+         {"base":"192.55.5.0/16","size":24},
+         {"base":"192.55.6.0/16","size":24},
+         {"base":"192.55.7.0/16","size":24}
+ ],
+ "bip": "192.55.1.1/24"
+```
+> bip 为docker0使用IP段
+> default-address-pools 为swarm使用ip段
+- 重启docker
+
+```bash
+systemctl stop docker
+ip link del docker0 down
+systemctl daemon-reload
+systemctl start docker
+```
+
+- 更新docker_gwbridge占用的IP(用于集群通信)
+```bash
+# 停止swarm所有服务
+docker service rm ***
+# 离开集群
+docker swarm leave --force
+# 删除docker_gwbridge
+docker network rm docker_gwbridge
+# 不能直接用ip link del来删docker_gwbridge，docker会崩
+
+```
+  - 方法一: 使用上面预留的192.55.0.0/16 地址段
+
+  >  重新再docker swarm init或docker swarm join
+
+  - 方法二: 使用指定地址段
+
+```
+docker network create \
+--subnet 10.11.0.0/16 \
+--opt com.docker.network.bridge.name=docker_gwbridge \
+--opt com.docker.network.bridge.enable_icc=false \
+--opt com.docker.network.bridge.enable_ip_masquerade=true \
+docker_gwbridge
+```
+

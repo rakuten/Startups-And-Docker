@@ -219,3 +219,5 @@ PathPrefix: /sub/*      匹配请求的子目录及包含该子目录的请求
 DockerHub:[https://hub.docker.com/\_/traefik](https://hub.docker.com/\_/traefik)
 
 中文文档:[https://www.geek-book.com/src/docs/traefik/traefik/docs.traefik.io/index.html](https://www.geek-book.com/src/docs/traefik/traefik/docs.traefik.io/index.html)
+
+拆分acme.json: [https://github.com/ldez/traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper)

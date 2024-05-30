@@ -50,9 +50,17 @@ prom/node-exporter \
 
 
 #### **Windows**
-* 下载软件 [https://github.com/prometheus-community/windows\_exporter/releases/latest](https://github.com/prometheus-community/windows_exporter/releases/latest) \(如:windows\_exporter-0.16.0-amd64.msi\)
-* 双击运行
+* 下载软件 [https://github.com/prometheus-community/windows\_exporter/releases/latest](https://github.com/prometheus-community/windows_exporter/releases/latest) \(如:windows_exporter-0.25.1-amd64.msi)
+
 * 打开Windows入站防火墙端口9182
+
+* 运行安装命令
+
+  ```bash
+  
+  PSNativeCommandArgumentPassing = 'Legacy' msiexec /i windows_exporter-0.25.1-amd64.msi ADD_FIREWALL_EXCEPTION=yes ENABLED_COLLECTORS=defaults,memory,tcp  --% EXTRA_FLAGS="--collector.service.services-where ""Name='windows_exporter'"""
+  ```
+
 * targets.json中添加内容
 
 ```javascript
@@ -68,7 +76,34 @@ prom/node-exporter \
 
 * Grafana添加面板: 左边栏 + 号 &gt; Import &gt; 输入 10467 &gt; 点击Load按钮
 
+
+#### GPU
+
+参考:  [utkuozdemir/nvidia_gpu_exporter](https://github.com/utkuozdemir/nvidia_gpu_exporter/blob/master/INSTALL.md)
+
+```bash
+#打开防火墙9835端口
+New-NetFirewallRule -DisplayName "Nvidia GPU Exporter" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9835
+
+#下载软件
+<https://github.com/utkuozdemir/nvidia_gpu_exporter/releases/download/v1.1.0/nvidia_gpu_exporter_1.1.0_windows_x86_64.zip>
+
+#以服务方式启动
+Start-Service nvidia_gpu_exporter
+```
+
+- prometheus添加接收节点
+
+```bash
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+scrape_configs:
+  - job_name: 'nvidia_gpu_exporter'
+    static_configs:
+    - targets: ['localhost:9835']
+```
+
+- grafana添加 14574 面板
+
 <!-- tabs:end -->
-
-
-

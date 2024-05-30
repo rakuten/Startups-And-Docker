@@ -2,6 +2,8 @@
 
 本页最后更新时间: {docsify-updated}
 
+[![GitHub Release](https://img.shields.io/github/release/grafana/promtail.svg)](https://github.com/grafana/promtail/releases/latest)
+
 ## 简介
 
 收集硬盘上log文件内容并发送给Loki实例
@@ -33,7 +35,7 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/loki/promtail.yaml,dst=/etc/promtail/promtail.yaml \
 --mount type=bind,src=/var/log,dst=/var/log \
 --label traefik.enable=false \
-grafana/promtail:2.6.1
+grafana/promtail:3.0.0
 ```
 
 <!-- tabs:end -->
