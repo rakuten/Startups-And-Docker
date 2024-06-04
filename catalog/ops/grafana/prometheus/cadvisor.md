@@ -33,7 +33,7 @@ docker run -d \
 -v /var/lib/docker/:/var/lib/docker:ro \
 -v /dev/disk/:/dev/disk:ro \
 -p 18081:8080 \
-uhub.service.ucloud.cn/gcr_io/cadvisor:v0.44.0 \
+uhub.service.ucloud.cn/gcr_io/cadvisor:v0.49.1 \
 --docker_only=true \
 --disable_root_cgroup_stats=true \
 --storage_duration=1m0s \
@@ -43,7 +43,23 @@ uhub.service.ucloud.cn/gcr_io/cadvisor:v0.44.0 \
 
 #### **Swarm**
 ```bash
-
+docker service create --replicas 1 \
+--name cadvisor \
+--constraint=node.role==manager \
+--cap-add=SYS_ADMIN \
+--network staging \
+-e TZ=Asia/Shanghai \
+-p 18081:8080 \
+--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock,ro \
+--mount type=bind,src=/,dst=/rootfs,ro \
+--mount type=bind,src=/var/run,dst=/var/run \
+--mount type=bind,src=/sys,dst=/sys,ro \
+--mount type=bind,src=/var/lib/docker,dst=/var/lib/docker,ro \
+uhub.service.ucloud.cn/gcr_io/cadvisor:v0.49.1 \
+-docker_only=true \
+--disable_root_cgroup_stats=true \
+--storage_duration=1m0s \
+--disable_metrics=disk,diskIO
 ```
 
 <!-- tabs:end -->

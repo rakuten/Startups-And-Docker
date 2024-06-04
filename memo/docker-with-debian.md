@@ -58,6 +58,7 @@ sudo apt-get install docker-ce
 ```
 
 ### Docker运行报错
+```bash
 vi /usr/lib/systemd/system/docker.service
 
 在ExecStart那行末尾添加-H unix:///var/run/docker.sock，让最终结果如下:
@@ -65,7 +66,9 @@ ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
 systemctl daemon-reload
 systemctl restart docker
-
+```
 
 ### 为非root帐号授权使用docker
+```bash
 sudo usermod -aG docker <username>
+```

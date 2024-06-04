@@ -22,11 +22,11 @@
 #创建数据保存目录
 mkdir -p ${NFS}/prometheus/conf
 mkdir ${NFS}/prometheus/data
-chown nobody:nogroup $USER:$USER ${NFS}/prometheus/data
+chmod 777 ${NFS}/prometheus/data
 touch ${NFS}/prometheus/conf/targets.json
 
-#创建配置文件
-vi ${NFS}/prometheus/conf/prometheus.yml
+#下载配置文件
+wget -O ${NFS}/prometheus/conf/prometheus.yml https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus.yml
 ```
 
 * prometheus.yml
@@ -73,13 +73,16 @@ docker run -d \
 --name prometheus \
 --net=backend \
 --restart always \
--v ${NFS}/prometheus/conf:/etc/prometheus \
+-e TZ=Asia/Shanghai \
+-v ${NFS}/prometheus/prometheus.yml:/etc/prometheus \
 -v ${NFS}/prometheus/data:/prometheus/data \
-prom/prometheus
+prom/prometheus \
+--config.file=/etc/prometheus/prometheus.yml
+--web.enable-remote-write-receiver
 ```
 
-
 #### **Swarm**
+
 ```bash
 docker service create --replicas 1 \
 --name prometheus \
@@ -89,7 +92,9 @@ docker service create --replicas 1 \
 --mount type=bind,src=${NFS}/prometheus/conf,dst=/etc/prometheus \
 --mount type=bind,src=${NFS}/prometheus/data,dst=/prometheus \
 --label traefik.enable=false \
-prom/prometheus
+prom/prometheus \
+--config.file=/etc/prometheus/prometheus.yml
+--web.enable-remote-write-receiver
 ```
 
 <!-- tabs:end -->
@@ -100,4 +105,5 @@ prom/prometheus
 
 官网: https://prometheus.io/
 Github: https://github.com/prometheus/prometheus
+配置样本: https://github.com/prometheus/prometheus/tree/main/documentation/examples
 报警规则: https://awesome-prometheus-alerts.grep.to/

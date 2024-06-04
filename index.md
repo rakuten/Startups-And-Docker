@@ -75,6 +75,8 @@
 | [Grafana/Promtail](catalog/ops/grafana/grafana-promtail.md) | 日志采集系统 | 20M |  | 需配合Loki使用 |
 | [Grafana/Tempo](catalog/ops/grafana/grafana-tempo.md) | 链路追踪系统 | 72M | 16686 | 需配合Loki使用 |
 | [Prometheus](catalog/ops/grafana/prometheus/prometheus.md) | 服务监控 | 354M | 9090 | 也是时序数据库 |
+| [AlertManager](catalog/ops/grafana/prometheus/alertmanager.md) | Prometheus警报 |  |  |  |
+| [Karma](catalog/ops/grafana/prometheus/karma.md) | Prometheus警报面板 |  | 8080 |  |
 | [cAdvisor](catalog/ops/grafana/prometheus/cadvisor.md) | Docker状态监控 | 87M |  |  |
 
 ### 私有仓库

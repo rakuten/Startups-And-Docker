@@ -48,6 +48,25 @@ systemctl show --property=Environment docker
 ```
 
 
+### 开放API
+
+```bash
+vi /usr/lib/systemd/system/docker.service
+#在 ExecStart=/usr/bin/dockerd 后面直接添加 -H tcp://0.0.0.0:2375
+```
+
+> 这个操作会给匿名用户管理docker的权限，为安全考虑需要加SSL认证
+
+
+### 命令补全
+
+```bash
+apt install bash-completion
+docker completion bash > /etc/bash_completion.d/docker
+source /etc/bash_completion.d/docker
+```
+
+
 
 ### 修改Docker默认IP
 

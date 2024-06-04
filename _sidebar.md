@@ -66,6 +66,7 @@
         * [SNMP Exporter](catalog/ops/grafana/prometheus/snmp-exporter.md)
         * [cAdvisor](catalog/ops/grafana/prometheus/cadvisor.md)
         * [Alert Manager](catalog/ops/grafana/prometheus/alertmanager.md)
+        * [Karma](catalog/ops/grafana/prometheus/karma.md)
       * [Grafana/Loki](catalog/ops/grafana/grafana-loki.md)
         * [Promtail](catalog/ops/grafana/grafana-promtail.md)
       * [Grafana/Tempo](catalog/ops/grafana/grafana-tempo.md)

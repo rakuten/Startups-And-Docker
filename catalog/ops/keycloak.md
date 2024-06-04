@@ -27,7 +27,7 @@ docker run -d\
 --restart unless-stopped \
 --network=backend \
 --name keycloak \
--h jumpserver \
+-h keycloak \
 -p 8080:8080 \
 -e KEYCLOAK_USER=admin \
 -e KEYCLOAK_PASSWORD=admin \
