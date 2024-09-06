@@ -34,7 +34,7 @@ mkdir /tmp/tempo
 chmod 777 /tmp/tempo
 
 #下载配置文件
-wget -O ${NFS}/tempo/tempo-local.yaml https://raw.githubusercontent.com/grafana/tempo/main/example/docker-compose/local/tempo-local.yaml
+wget -O ${NFS}/tempo/tempo-local.yaml https://raw.githubusercontent.com/grafana/intro-to-mltp/main/tempo/tempo.yaml
 ```
 
 ## 启动命令

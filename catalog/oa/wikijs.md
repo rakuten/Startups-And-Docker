@@ -6,7 +6,7 @@
 
 ## 简介
 
-![](../images/wikijs.jpg)
+![](../../images/wikijs.png)
 
 轻量级Wiki，支持多种数据库，支持Markdown，支持国外社交软件认证，支持多种企业认证(LDAP、OIDC、OAuth2等)，支持高可用(仅支持PostgreSQL)，支持多种备份形式(本地、S3、Git、Google、Azure、Dropbox、SFTP等)
 

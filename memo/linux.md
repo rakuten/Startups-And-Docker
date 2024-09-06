@@ -91,3 +91,30 @@ diff -u lib/engine.js /tmp/engine.js > engine.patch
 # 将差异合并回源文件
 patch -p3 < engine.patch lib/engine.js
 ```
+
+- 日志管理
+
+```bash
+# 查看系统内核日志
+journalctl -k
+
+# 查看服务日志
+journalctl -u 服务名
+
+# 查看日志磁盘占用量
+journalctl --disk-usage
+
+# 2d之前的自动删除旧的
+journalctl --vacuum-time=2d
+
+# 大于500M后自动删除旧的
+journalctl --vacuum-size=500M
+
+# 修改日志设置
+/etc/systemd/journald.conf
+SystemMaxUse=16M
+ForwardToSyslog=no
+
+# 重启日志服务
+systemctl restart systemd-journald.service
+```

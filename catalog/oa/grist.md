@@ -45,7 +45,7 @@ docker run -d \
 -e GRIST_DOMAIN="https://grist.${DOMAIN}" \
 -e GRIST_HIDE_UI_ELEMENTS=helpCenter,billing,templates,multiSite,multiAccounts \
 -v /${NFS}/grist:/persist \
-gristlabs/grist:1.0.9
+gristlabs/grist:1.1.18
 
 ```
 
@@ -70,7 +70,7 @@ docker service create --replicas 1 \
 --label traefik.http.routers.notes-sec.tls=true \
 --label traefik.http.routers.notes-sec.rule="Host(\`grist.${DOMAIN}\`)" \
 --label traefik.http.routers.notes-sec.entrypoints=https \
-gristlabs/grist:1.0.9
+gristlabs/grist:1.1.18
 ```
 
 <!-- tabs:end -->

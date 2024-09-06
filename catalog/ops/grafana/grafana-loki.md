@@ -61,7 +61,7 @@ chmod 777 ${NFS}/loki/data
 docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 
 #下载配置文件
-wget -O ${NFS}/loki/local-config.yaml https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-docker-config.yaml
+wget -O ${NFS}/loki/local-config.yaml https://raw.githubusercontent.com/grafana/intro-to-mltp/main/loki/loki.yaml
 ```
 
 ## 启动命令
@@ -72,6 +72,7 @@ wget -O ${NFS}/loki/local-config.yaml https://raw.githubusercontent.com/grafana/
 ```bash
 docker run -d \
 --name loki \
+-v ${NFS}/loki/data:/loki \
 -v ${NFS}/loki/local-config.yaml:/etc/loki/local-config.yaml \
 -p 3100:3100 \
 grafana/loki:3.0.0 \

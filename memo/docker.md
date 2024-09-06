@@ -1,6 +1,6 @@
 # Docker 常用命令
 
-```text
+```bash
 #设置数据路径
 set NFS=/nfs/docker
 
@@ -105,13 +105,14 @@ docker network rm docker_gwbridge
 # 不能直接用ip link del来删docker_gwbridge，docker会崩
 
 ```
+
   - 方法一: 使用上面预留的192.55.0.0/16 地址段
 
   >  重新再docker swarm init或docker swarm join
 
   - 方法二: 使用指定地址段
 
-```
+```bash
 docker network create \
 --subnet 10.11.0.0/16 \
 --opt com.docker.network.bridge.name=docker_gwbridge \

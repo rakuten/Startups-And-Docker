@@ -72,7 +72,7 @@ elkarbackup/elkarbackup
 
 ```bash
 docker service create --replicas 1 \
---name etcd-server \
+--name elkarbackup \
 --network staging \
 -e TZ=Asia/Shanghai \
 -e PHP_TZ=Asia/Shanghai \

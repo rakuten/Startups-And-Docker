@@ -90,7 +90,7 @@ docker service create --replicas 1 \
 -e TZ=Asia/Shanghai \
 -p 9090:9090 \
 --mount type=bind,src=${NFS}/prometheus/conf,dst=/etc/prometheus \
---mount type=bind,src=${NFS}/prometheus/data,dst=/prometheus \
+--mount type=bind,src=${NFS}/prometheus/data,dst=/prometheus/data \
 --label traefik.enable=false \
 prom/prometheus \
 --config.file=/etc/prometheus/prometheus.yml

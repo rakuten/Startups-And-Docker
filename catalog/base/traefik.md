@@ -12,11 +12,12 @@
 
 ## EXPOSE
 
-| 端口   | 用途    |
-| ---- | ----- |
+| 端口 | 用途      |
+| ---- | --------- |
+| 80   | HTTP入口  |
+| 443  | HTTPS入口 |
 | 8080 | 管理页面  |
-| 80   | HTTP  |
-| 443  | HTTPS |
+| 8082 | Metrics端口  |
 
 
 
@@ -43,8 +44,6 @@ mkdir -p ${NFS}/traefik/config
 [metrics]
   [metrics.prometheus]
     buckets = [0.1,0.3,1.2,5.0]
-  [entryPoints.metrics]
-    address = ":8082"
 
 [tracing]
   [tracing.jaeger]
@@ -55,6 +54,8 @@ mkdir -p ${NFS}/traefik/config
 	insecureSkipVerify = true
 
 [entryPoints]
+  [entryPoints.metrics]
+    address = ":8082"
   [entryPoints.http]
     address = ":80"
     [entryPoints.http.forwardedHeaders]
@@ -63,7 +64,6 @@ mkdir -p ${NFS}/traefik/config
     address = ":443"
     [entryPoints.https.forwardedHeaders]
       insecure = true
-
   [entryPoints.ssh]
     address = ":8022"
 
@@ -132,6 +132,11 @@ docker run -d \
 -v ${NFS}/traefik/traefik.toml:/etc/traefik/traefik.toml \
 -v ${NFS}/traefik/acme:/etc/traefik/acme \
 -v /var/run/docker.sock:/var/run/docker.sock \
+--label traefik.http.routers.dashboard.entrypoints=https \
+--label traefik.http.routers.dashboard.tls=true \
+--label traefik.http.routers.dashboard.rule="Host(\`${DOMAIN}\`) && PathPrefix(\`/api/\`) || PathPrefix(\`/dashboard/\`)" \
+--label traefik.http.services.dashboard.loadbalancer.server.port=8080 \
+--label "traefik.http.routers.dashboard.service=api@internal" \
 traefik
 ```
 
@@ -141,7 +146,7 @@ traefik
 docker service create --replicas 1 \
 --name traefik \
 --network staging \
--p 8080:8080 \
+-p 8082:8082 \
 --publish published=80,target=80,mode=host \
 --publish published=443,target=443,mode=host \
 --publish published=8022,target=8022,mode=host,protocol=tcp \
@@ -156,7 +161,7 @@ docker service create --replicas 1 \
 --mount type=bind,source=${NFS}/traefik/config,target=/etc/traefik/config,readonly \
 --label traefik.http.routers.dashboard.entrypoints=https \
 --label traefik.http.routers.dashboard.tls=true \
---label "traefik.http.routers.dashboard.rule=Host(\`www.${DOMAIN}\`) && (PathPrefix(\`/api\`) || PathPrefix(\`/dashboard\`))" \
+--label traefik.http.routers.dashboard.rule="Host(\`${DOMAIN}\`) && PathPrefix(\`/api/\`) || PathPrefix(\`/dashboard/\`)" \
 --label traefik.http.services.dashboard.loadbalancer.server.port=8080 \
 --label "traefik.http.routers.dashboard.service=api@internal" \
 --log-driver=loki \
